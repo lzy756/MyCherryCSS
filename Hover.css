@@ -1,0 +1,494 @@
+:root {
+  /* 动画变量 */
+  --duration-quick: 0.15s;
+  --duration-normal: 0.3s;
+  --easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* 几何变量 */
+  --radius-dynamic: 8px;
+  --radius-large: 12px;
+  
+  /* Dracula 色彩系统 */
+  --color-dracula-background: #282a36;
+  --color-dracula-current-line: #44475a;
+  --color-dracula-selection: #44475a;
+  --color-dracula-foreground: #f8f8f2;
+  --color-dracula-comment: #6272a4;
+  --color-dracula-cyan: #8be9fd;
+  --color-dracula-green: #50fa7b;
+  --color-dracula-orange: #ffb86c;
+  --color-dracula-pink: #ff79c6;
+  --color-dracula-purple: #bd93f9;
+  --color-dracula-red: #ff5555;
+  --color-dracula-yellow: #f1fa8c;
+  
+  /* 品牌色 */
+  --color-brand-primary: #50fa7b;
+  --color-brand-secondary: #bd93f9;
+  --color-brand-hover: color-mix(in oklch, var(--color-brand-primary) 90%, white);
+  --color-brand-border: #44475a;
+  --color-brand-border-dark: #6272a4;
+  
+  /* 主题设置 */
+  --theme-lightness: 1;
+  --shadow-intensity: 0.15;
+  --highlight-intensity: 0.05;
+  --file-line-width: 65rem;
+  --font-default: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Menlo, Monaco, Consolas, 'Courier New', monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --background-image-url: none;
+  --background-overlay-opacity: 0.97;
+  --background-blur: 10px;
+  
+  /* 材质效果 */
+  --glass-opacity: 0.7;
+  --glass-blur: 10px;
+  --surface-border: 1px solid rgba(80, 250, 123, 0.1);
+  --surface-glow: 0 0 10px rgba(80, 250, 123, 0.2);
+  --neon-glow: 0 0 8px rgba(80, 250, 123, 0.5);
+}
+
+body[theme-mode="dark"] {
+  --color-background: var(--color-dracula-background);
+  --color-background-soft: rgba(68, 71, 90, 0.6);
+  --color-background-mute: rgba(98, 114, 164, 0.4);
+  --navbar-background: rgba(40, 42, 54, 0.8);
+  --chat-background: var(--color-dracula-background);
+  --chat-background-user: rgba(68, 71, 90, 0.6);
+  --user-text-color-dark: #f8f8f2;
+  --chat-background-assistant: rgba(40, 42, 54, 0.7);
+  --ctp-text: #f8f8f2;
+  --color-link: var(--color-dracula-cyan);
+  --shadow-color: rgba(0, 0, 0, 0.6);
+  --highlight-color: rgba(80, 250, 123, 0.1);
+  --deep-thinking-color: var(--color-dracula-orange);
+  --code-bg: rgba(40, 42, 54, 0.8);
+  --footnote-bg: rgba(68, 71, 90, 0.3);
+  --background-overlay-opacity: 0.92;
+  --theme-lightness: -1;
+  --shadow-intensity: 0.35;
+  
+  /* 文本选择 */
+  --selection-bg: var(--color-dracula-selection);
+  --selection-text: var(--color-dracula-foreground);
+}
+
+body[theme-mode="light"] {
+  --color-background: #f8f8f2;
+  --color-background-soft: #f0f0e6;
+  --color-background-mute: #e0e0d8;
+  --navbar-background: rgba(240, 240, 230, 0.8);
+  --chat-background: #f8f8f2;
+  --chat-background-user: #e6f8ef;
+  --chat-background-assistant: #f0f0e6;
+  --color-white: #ffffff;
+  --ctp-text: #282a36;
+  --color-link: #388a50;
+  --shadow-color: rgba(0, 0, 0, 0.15);
+  --highlight-color: rgba(80, 250, 123, 0.1);
+  --deep-thinking-color: #d05c00;
+  --code-bg: #e6e6dc;
+  --footnote-bg: rgba(0, 0, 0, 0.03);
+  --background-overlay-opacity: 0.95;
+  
+  /* 文本选择 */
+  --selection-bg: rgba(80, 250, 123, 0.3);
+  --selection-text: #282a36;
+}
+
+* {
+  font-family: var(--font-default);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+body {
+  position: relative;
+  background-image: var(--background-image-url);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: background-color 0.5s ease;
+}
+
+/* 创建渐变背景 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(189, 147, 249, 0.05), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(80, 250, 123, 0.05), transparent 25%),
+    var(--color-background);
+  opacity: var(--background-overlay-opacity);
+  backdrop-filter: blur(var(--background-blur));
+  -webkit-backdrop-filter: blur(var(--background-blur));
+  z-index: -1;
+}
+
+/* 添加网格图案增强极客感 */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(80, 250, 123, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(80, 250, 123, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.message-content-container {
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+  contain: layout paint style;
+  background: var(--color-background-soft);
+  border: 1px solid var(--color-brand-border);
+  border-radius: var(--radius-dynamic);
+  transition:
+    transform var(--duration-quick) var(--easing-emphasized),
+    box-shadow 0.3s var(--easing-decelerate),
+    background-color 0.5s var(--easing-standard),
+    border-color 0.3s var(--easing-standard),
+    border-radius 0.3s var(--easing-decelerate);
+  margin-block: 10px;
+  padding-inline: 18px;
+  padding-block: 14px;
+  box-shadow:
+    0 2px 10px -2px var(--shadow-color),
+    0 0 0 1px rgba(80, 250, 123, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+  backdrop-filter: blur(1px);
+}
+
+/* 消息容器霓虹效果 */
+.message-content-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  background: 
+    linear-gradient(
+      120deg, 
+      transparent 30%, 
+      rgba(80, 250, 123, 0.06) 45%, 
+      rgba(139, 233, 253, 0.06) 55%, 
+      transparent 70%
+    );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.message-content-container:hover {
+  border-radius: calc(var(--radius-dynamic) + 2px);
+  transform: translateY(-1px);
+  box-shadow:
+    0 4px 15px -2px var(--shadow-color),
+    0 0 0 1px rgba(80, 250, 123, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+  border-color: rgba(80, 250, 123, 0.3);
+}
+
+.message-content-container:hover::before {
+  opacity: 1;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-border);
+  border-radius: 10px;
+  border: 2px solid var(--color-background);
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-primary);
+}
+
+#inputbar {
+  background: var(--color-background);
+  border: 1px solid var(--color-brand-border);
+  border-radius: var(--radius-large);
+  margin: -15px 20px 15px 20px;
+  transition: all 0.25s var(--easing-decelerate);
+  box-shadow:
+    0 4px 15px -2px var(--shadow-color),
+    0 0 0 1px rgba(80, 250, 123, 0.1);
+  backdrop-filter: blur(var(--glass-blur));
+  position: relative;
+  overflow: hidden;
+}
+
+/* 输入框顶部霓虹线 */
+#inputbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(80, 250, 123, 0.2) 20%, 
+    rgba(139, 233, 253, 0.2) 80%, 
+    transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#inputbar:focus-within {
+  border-radius: var(--radius-dynamic);
+  border-color: var(--color-brand-primary);
+  box-shadow:
+    0 8px 20px -4px var(--shadow-color),
+    0 0 0 1px rgba(80, 250, 123, 0.3),
+    0 0 15px rgba(80, 250, 123, 0.15);
+}
+
+#inputbar:focus-within::before {
+  opacity: 1;
+}
+
+.navbar {
+  background: var(--navbar-background);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-bottom: 1px solid rgba(80, 250, 123, 0.1);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-container {
+  background: transparent;
+  padding: 0 10px;
+}
+
+.chat-item.user .message-content-container {
+  background: var(--chat-background-user);
+  border-color: rgba(80, 250, 123, 0.3);
+  box-shadow:
+    0 2px 10px -2px var(--shadow-color),
+    0 0 0 1px rgba(80, 250, 123, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.chat-item.user .message-content-container .nickname,
+.chat-item.user .message-content-container .message {
+  color: var(--ctp-text);
+}
+
+.chat-item.assistant .message-content-container {
+  background: var(--chat-background-assistant);
+}
+
+.chat-item.assistant .message-content-container .nickname,
+.chat-item.assistant .message-content-container .message {
+  color: var(--ctp-text);
+}
+
+body[theme-mode='dark'] .message-content-container {
+  border-color: var(--color-brand-border-dark);
+}
+
+body[theme-mode='dark'] .chat-item.user .message-content-container .nickname,
+body[theme-mode='dark'] .chat-item.user .message-content-container .message {
+  color: #f8f8f2;
+}
+
+body[theme-mode="dark"] #inputbar {
+  border-color: var(--color-brand-border-dark);
+}
+
+/* 增强对比度首选项支持 */
+@media (prefers-contrast: more) {
+  .message-content-container {
+    border-width: 2px;
+  }
+  
+  .message-content-container::after {
+    content: "";
+    display: block;
+    border: 1px solid CanvasText;
+    border-radius: inherit;
+  }
+}
+
+/* 链接样式 */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  position: relative;
+  transition: all 0.2s ease;
+  padding: 0 2px;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+a:hover {
+  text-decoration: none;
+  color: var(--color-brand-primary);
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+body[theme-mode="dark"] .chat-item.user .nickname,
+body[theme-mode="dark"] .chat-item.user .message,
+.chat-item .nickname,
+.chat-item .message {
+  color: var(--ctp-text);
+}
+
+.chat-item .nickname {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.ant-collapse-content-box .markdown {
+  color: var(--deep-thinking-color);
+  font-style: italic;
+  padding: 8px 12px;
+  background: rgba(255, 184, 108, 0.1);
+  border-radius: var(--radius-dynamic);
+  border-left: 2px solid var(--deep-thinking-color);
+}
+
+/* 代码块样式 */
+.shiki {
+  background-color: var(--code-bg);
+  border-radius: var(--radius-dynamic);
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: inset 0 0 0 1px rgba(80, 250, 123, 0.1);
+  overflow: auto;
+}
+
+.footnotes {
+  background-color: var(--footnote-bg);
+  border-radius: var(--radius-dynamic);
+  padding: 12px 16px;
+  margin-top: 24px;
+  border-top: 1px solid rgba(80, 250, 123, 0.1);
+}
+
+#inputbar textarea.ant-input {
+  height: 120px;
+  padding: 12px 16px;
+  border-radius: var(--radius-dynamic);
+  background: transparent;
+  color: var(--ctp-text);
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* 按钮样式 */
+button, .ant-btn {
+  border-radius: var(--radius-dynamic);
+  transition: all 0.2s var(--easing-emphasized);
+  border: 1px solid var(--color-brand-border);
+  background: var(--color-background-soft);
+  color: var(--ctp-text);
+  padding: 6px 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover, .ant-btn:hover {
+  border-color: var(--color-brand-primary);
+  background: var(--color-background-mute);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px -2px var(--shadow-color),
+    0 0 0 1px rgba(80, 250, 123, 0.2);
+}
+
+button:active, .ant-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px -2px var(--shadow-color);
+}
+
+/* 内联代码样式 */
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  background: var(--code-bg);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.9em;
+  border: 1px solid rgba(80, 250, 123, 0.1);
+}
+
+pre code {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+/* 表格样式 */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin: 16px 0;
+  overflow: hidden;
+  border-radius: var(--radius-dynamic);
+  border: 1px solid var(--color-brand-border);
+}
+
+th, td {
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-brand-border);
+}
+
+th {
+  background-color: var(--color-background-soft);
+  font-weight: 600;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
