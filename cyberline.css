@@ -1,0 +1,875 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap");
+@import url("http://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.min.css");
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  --duration-quick: 0.15s;
+  --duration-normal: 0.3s;
+  --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --default-border-radius: 8px;
+  --list-item-border-radius: var(--default-border-radius);
+
+  /* --- Subtle Gradient Line Settings --- */
+  --line-height: 1px; /* Control line thickness */
+  --color-line-subtle: rgba(var(--color-cyber-accent-rgb), 0.5); /* Default subtle line start color (adjust opacity) */
+
+  /* Default Colors */
+  --color-cyber-accent:rgba(46, 117, 118, 0.74);
+  --color-cyber-accent-bright:rgba(52, 140, 131, 0.75);
+  --color-cyber-accent-purple:rgba(173, 92, 130, 0.86);
+  --color-cyber-accent-secondary:rgba(198, 163, 66, 0.9);
+  --color-cyber-accent-secondary-rgb: 198, 163, 66;
+  --color-cyber-accent-rgb: 46, 129, 122; /* Default Cyan/Teal */
+  --color-cyber-accent-purple-rgb: 173, 92, 130;
+
+  --color-background: transparent;
+  --color-background-soft: rgba(37, 50, 67, 0.85);
+  --color-background-mute: rgba(53, 66, 85, 0.85);
+  --navbar-background: transparent;
+  --chat-background: transparent;
+  --chat-background-user: rgba(41, 55, 73, 0.7);
+  --chat-background-assistant: rgba(27, 52, 87, 0.7);
+  /* Keep shadows for specific non-bordered elements if needed, otherwise set to none */
+  --chat-customize-box-shadow: none;
+  --chat-customize-box-shadow2: none;
+  --chat-customize-box-shadow3: inset 0 0 0 1px rgba(46, 61, 77, 0.2);
+  --chat-customize-box-shadow4: inset 0 0 0 1px rgba(73, 94, 115, 0.7);
+  --chat-text-user: #b8cfe6;
+  --color-text-1: #b5d2ec;
+  --color-text-2:rgba(160, 186, 212, 0.76);
+  --chat-customize-collapse-background: rgba(43, 79, 129, 0.75);
+  --chat-customize-codeHeader: #75808c;
+  --color-black:rgba(30, 41, 53, 0.68);
+  --color-white:rgba(224, 238, 252, 0.66);
+  --antd-arrow-background-color: rgba(30, 35, 42, 0.75);
+  --color-background-opacity: rgba(30, 45, 66, 0.65);
+  --color-background-rgb: 20, 25, 32;
+  --color-black-rgb: 18, 22, 26;
+  --color-white-rgb: 240, 224, 224;
+}
+
+body {
+  font-family: "Audiowide", "Noto Sans SC", "LXGW WenKai Screen", sans-serif !important;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* UI Element Fonts */
+.ant-modal-content, .ant-popover-inner, div[class^="InputContainer-"],
+div[class^="OutputContainer-"], div[class^="HistoryContainner-"],
+.ant-notification-notice, .ant-message-notice-content, .ant-drawer-content,
+.ant-collapse-content-box, .ant-modal-body .ant-input-affix-wrapper input,
+.ant-segmented-group .ant-segmented-item-label, .ant-btn, .ant-dropdown-trigger,
+.ant-modal-header .ant-modal-title, .ant-collapse-header, li[class^="MenuItem-"],
+#content-container [class^="ListItemContainer-"], div[class^="SettingGroup-"] label,
+.ant-tooltip-inner, .markdown th, .ant-table-thead > tr > th,
+.markdown pre [class^="CodeHeader-"] {
+  font-family: inherit !important;
+  font-weight: 700 !important;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+
+/* Reading Area Fonts */
+.bubble .message-content-container, .inputbar-container textarea,
+.ant-modal .ant-modal-body, .ant-table-tbody > tr > td, .markdown blockquote,
+.markdown table td, .markdown p, .markdown li, .markdown strong, .markdown b,
+.markdown em, .markdown i {
+  font-family: "LXGW WenKai Screen", sans-serif !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1.2 !important;
+}
+
+/* Code Fonts */
+code, pre, .markdown code, .markdown pre code,
+.markdown pre [class^="CodeContent-"] *, .markdown pre .shiki, .markdown pre .shiki * {
+  font-family: "JetBrains Mono", "Fira Code", "Consolas", "Menlo", "Monaco", "Courier New", monospace !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.0 !important;
+  font-size: 1.02em !important;
+}
+
+/* --- Dark Mode --- */
+body[theme-mode="dark"] {
+  --color-cyber-accent:rgba(26, 110, 136, 0.84);
+  --color-cyber-accent-bright:rgba(59, 169, 167, 0.73);
+  --color-cyber-accent-purple:rgb(151, 111, 151);
+  --color-cyber-accent-secondary:rgb(196, 159, 63);
+  --color-cyber-accent-secondary-rgb: 184, 134, 11;
+  --color-cyber-accent-rgb: 0, 168, 170; /* Dark Cyan/Teal */
+  --color-cyber-accent-purple-rgb: 176, 96, 176;
+  --color-background: transparent;
+  --color-background-soft: rgba(18, 22, 28, 0.74);
+  --color-background-mute: rgba(51, 63, 81, 0.79);
+  --navbar-background: transparent;
+  --chat-background: transparent;
+  --chat-background-user: rgba(15, 64, 104, 0.75);
+  --chat-background-assistant: rgba(18, 27, 41, 0.87);
+  --chat-customize-collapse-background: rgba(34, 44, 59, 0.63);
+  --color-background-opacity: rgba(33, 44, 60, 0.51);
+  --color-background-rgb: 18, 22, 28;
+  --antd-arrow-background-color: rgba(33, 44, 60, 0.58);
+  --chat-text-user: #b0c8e0;
+  --color-text-1:rgba(165, 214, 246, 0.87);
+  --color-text-2:rgb(166, 194, 221);
+  --chat-customize-codeHeader: #707c88;
+  --color-black: #101316;
+  --color-white: #e8d8d8;
+  --chat-customize-box-shadow: none;
+  --chat-customize-box-shadow2: none;
+  --chat-customize-box-shadow3: inset 0 0 0 1px rgba(52, 79, 110, 0.39);
+  --chat-customize-box-shadow4: inset 0 0 0 1px rgba(110, 120, 130, 0.52);
+  --color-black-rgb: 16, 19, 22;
+  --color-white-rgb: 232, 216, 216;
+  /* --- Dark Mode Subtle Line Color --- */
+  --color-line-subtle: rgba(var(--color-cyber-accent-rgb), 0.5);
+  background-image: url('https://kupitkan.com/upload/iblock/ca9/sw0qn2658mdbbkfowrn1pevewx6wubie.jpg');
+}
+
+/* --- Light Mode --- */
+body[theme-mode="light"] {
+  --color-cyber-accent:rgba(34, 126, 206, 0.81);
+  --color-cyber-accent-bright:rgba(59, 126, 226, 0.82);
+  --color-cyber-accent-purple: #586EC0;
+  --color-cyber-accent-secondary: #c8961e;
+  --color-cyber-accent-secondary-rgb: 200, 150, 30;
+  --color-cyber-accent-rgb: 34, 126, 206; /* Light Blue */
+  --color-cyber-accent-purple-rgb: 88, 110, 192;
+  --color-background: transparent;
+  --color-background-soft: rgba(214, 230, 255, 0.57);
+  --color-background-mute: rgba(235, 238, 242, 0.53);
+  --navbar-background: transparent;
+  --chat-background: transparent;
+  --chat-background-user: rgba(149, 183, 234, 0.5);
+  --chat-background-assistant: rgba(149, 183, 234, 0.5);
+  --chat-customize-collapse-background: rgba(149, 183, 234, 0.49);
+  --color-background-opacity: rgba(192, 215, 250, 0.35);
+  --color-background-rgb: 240, 242, 245;
+  --antd-arrow-background-color: rgba(182, 207, 244, 0.32);
+  --chat-text-user: #304050;
+  --color-text-1: #2a3848;
+  --color-text-2: #5a6470;
+  --chat-customize-codeHeader: #5a6470;
+  --color-white:rgba(231, 244, 251, 0.56);
+  --color-black: #25303e;
+  --chat-customize-box-shadow: none;
+  --chat-customize-box-shadow2: none;
+  --chat-customize-box-shadow3: inset 0 1px 1px rgba(27, 31, 35, 0.04), 0 0 0 1px rgba(200, 208, 215, 0.7);
+  --chat-customize-box-shadow4: inset 0 1px 1px rgba(27, 31, 35, 0.08), 0 0 0 1px rgba(200, 208, 215, 0.7);
+  --color-black-rgb: 37, 48, 62;
+  --color-white-rgb: 248, 248, 248;
+  /* --- Light Mode Subtle Line Color --- */
+  --color-line-subtle: rgba(var(--color-cyber-accent-rgb), 0.4);
+  background-image: url('https://images.wallpaperscraft.ru/image/single/gradient_raznotsvetnyj_abstraktsiia_204077_3840x2400.jpg');
+}
+
+
+/* == Component Styles == */
+
+/* --- Helper: Add Top/Bottom Lines --- */
+.subtle-lines::before,
+.subtle-lines::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--line-height);
+    background: linear-gradient(to right, var(--color-line-subtle), transparent 85%);
+    pointer-events: none;
+    z-index: 2; /* Ensure lines are above background but below content */
+}
+.subtle-lines::before { top: 0; }
+.subtle-lines::after { bottom: 0; background: linear-gradient(to right, transparent 15%, var(--color-line-subtle)); /* Reverse gradient for bottom */ }
+
+
+/* --- Consolidated Containers (Apply Subtle Lines) --- */
+.ant-popover-inner,
+div[class^="InputContainer-"],
+.ant-notification-notice,
+.ant-message-notice-content,
+.ant-dropdown-menu,
+.ant-select-dropdown,
+.ant-popover-content,
+div[class^="PopoverContent-"],
+div[class^="AgentCardContainer-"],
+.ant-modal-confirm-content div[class^="AgentPrompt-"],
+div[class^="CardInfo-"] {
+  border-radius: var(--list-item-border-radius) !important;
+  background: var(--color-background-opacity) !important;
+  box-shadow: none !important;
+  position: relative;
+  border: none !important; /* Remove all borders */
+  padding: var(--line-height) 0; /* Add padding for lines */
+}
+/* Apply lines using helper class pattern */
+.ant-popover-inner::before, .ant-popover-inner::after,
+div[class^="InputContainer-"]::before, div[class^="InputContainer-"]::after,
+.ant-notification-notice::before, .ant-notification-notice::after,
+.ant-message-notice-content::before, .ant-message-notice-content::after,
+.ant-dropdown-menu::before, .ant-dropdown-menu::after,
+.ant-select-dropdown::before, .ant-select-dropdown::after,
+.ant-popover-content::before, .ant-popover-content::after,
+div[class^="PopoverContent-"]::before, div[class^="PopoverContent-"]::after,
+div[class^="AgentCardContainer-"]::before, div[class^="AgentCardContainer-"]::after,
+.ant-modal-confirm-content div[class^="AgentPrompt-"]::before, .ant-modal-confirm-content div[class^="AgentPrompt-"]::after,
+div[class^="CardInfo-"]::before, div[class^="CardInfo-"]::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--line-height);
+    background: linear-gradient(to right, var(--color-line-subtle), transparent 85%);
+    pointer-events: none;
+    z-index: 2;
+}
+.ant-popover-inner::before, div[class^="InputContainer-"]::before, .ant-notification-notice::before, .ant-message-notice-content::before, .ant-dropdown-menu::before, .ant-select-dropdown::before, .ant-popover-content::before, div[class^="PopoverContent-"]::before, div[class^="AgentCardContainer-"]::before, .ant-modal-confirm-content div[class^="AgentPrompt-"]::before, div[class^="CardInfo-"]::before { top: 0; }
+.ant-popover-inner::after, div[class^="InputContainer-"]::after, .ant-notification-notice::after, .ant-message-notice-content::after, .ant-dropdown-menu::after, .ant-select-dropdown::after, .ant-popover-content::after, div[class^="PopoverContent-"]::after, div[class^="AgentCardContainer-"]::after, .ant-modal-confirm-content div[class^="AgentPrompt-"]::after, div[class^="CardInfo-"]::after { bottom: 0; background: linear-gradient(to left, var(--color-line-subtle), transparent 85%); /* Adjust gradient direction */ }
+
+/* Apply inset shadow specifically if needed */
+.ant-modal-confirm-content div[class^="AgentPrompt-"],
+div[class^="CardInfo-"] {
+    box-shadow: var(--chat-customize-box-shadow3) !important; /* Keep inset shadow */
+}
+
+
+/* --- Containers with Blur (Modal, Drawer - Apply Subtle Lines) --- */
+.ant-modal .ant-modal-content,
+.ant-drawer-content {
+  border-radius: var(--list-item-border-radius) !important;
+  background: var(--color-background-opacity) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden; /* Keep overflow hidden for backdrop-filter */
+  position: relative;
+  color: var(--color-text-1);
+  will-change: transform, opacity;
+  border: none !important;
+  padding: var(--line-height) 0; /* Add padding for lines */
+}
+/* Apply lines */
+.ant-modal .ant-modal-content::before, .ant-modal .ant-modal-content::after,
+.ant-drawer-content::before, .ant-drawer-content::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--line-height);
+    background: linear-gradient(to right, var(--color-line-subtle), transparent 85%);
+    pointer-events: none;
+    z-index: 2;
+}
+.ant-modal .ant-modal-content::before, .ant-drawer-content::before { top: 0; }
+.ant-modal .ant-modal-content::after, .ant-drawer-content::after { bottom: 0; background: linear-gradient(to left, var(--color-line-subtle), transparent 85%); }
+
+/* Input Bar (Apply Subtle Lines) */
+.inputbar-container {
+  border-radius: var(--list-item-border-radius) !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  position: relative;
+  overflow: visible; /* Allow lines to potentially peek out slightly */
+  background-image: linear-gradient(var(--color-background-opacity), var(--color-background-opacity));
+  border: none !important;
+  /* No padding needed here typically */
+}
+.inputbar-container::before, .inputbar-container::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--line-height);
+    background: linear-gradient(to right, var(--color-line-subtle), transparent 85%);
+    pointer-events: none;
+    z-index: 2;
+}
+.inputbar-container::before { top: 0; }
+.inputbar-container::after { bottom: 0; background: linear-gradient(to left, var(--color-line-subtle), transparent 85%); }
+
+.inputbar-container textarea { resize: none; color: var(--color-text-1) !important; background-color: transparent !important; border: none !important; }
+.inputbar-container textarea:focus { border: none !important; box-shadow: none !important; }
+.inputbar-container .ant-btn {
+  color: var(--color-text-1) !important; background-color: var(--color-background-soft) !important;
+  box-shadow: none !important; position: relative; overflow: hidden; /* Keep hidden for button */
+  border-radius: calc(var(--list-item-border-radius) / 1.5) !important;
+  border: none !important;
+  padding: var(--line-height) 0; /* Add padding for lines */
+}
+.inputbar-container .ant-btn::before, .inputbar-container .ant-btn::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--line-height);
+    background: linear-gradient(to right, var(--color-line-subtle), transparent 85%);
+    pointer-events: none;
+    z-index: 0; /* Below button content */
+}
+.inputbar-container .ant-btn::before { top: 0; }
+.inputbar-container .ant-btn::after { bottom: 0; background: linear-gradient(to left, var(--color-line-subtle), transparent 85%); }
+
+.inputbar-container .ant-btn:hover { background-color: var(--color-background-mute) !important; }
+.inputbar-container .ant-btn .anticon, .inputbar-container .ant-btn .iconfont { color: var(--color-text-1) !important; position: relative; z-index: 1; }
+
+/* Dropdown Trigger (Optimized Animation) */
+.ant-dropdown-trigger { background-color: transparent !important; border: transparent !important; box-shadow: none; position: relative; transition: color 0.3s ease; color: var(--color-text-2); }
+.ant-dropdown-trigger:hover:not(.active) { color: var(--color-cyber-accent) !important; }
+.ant-dropdown-trigger.active { color: var(--color-cyber-accent-bright) !important; }
+.ant-dropdown-trigger::after { content: ''; position: absolute; height: 2px; width: 100%; background: var(--color-cyber-accent); box-shadow: none; transition: transform 400ms var(--easing-standard); pointer-events: none; left: 0; bottom: 0; transform-origin: left; transform: scaleX(0); will-change: transform; }
+.ant-dropdown-trigger:hover::after, .ant-dropdown-trigger.active::after { transform: scaleX(1); }
+.ant-dropdown-trigger:hover:not(.active)::after { transition-duration: 800ms; }
+.active .menu { background-color: transparent !important; border-radius: var(--list-item-border-radius); }
+.active .menu:hover { color: var(--color-cyber-accent) !important; }
+
+/* Message Bubble (Apply Subtle Lines - FIXED PADDING) */
+.bubble .message-content-container {
+  border-radius: var(--list-item-border-radius) !important;
+  box-shadow: inset 0 0 20px rgba(var(--color-cyber-accent-rgb), 0.1);
+  background-color: var(--chat-background-assistant) !important;
+  position: relative;
+  overflow: visible; /* Allow lines to draw outside padding box */
+  border: none !important;
+  /* --- MODIFICATION: Restore standard padding --- */
+  padding: 12px 16px; /* Adjust vertical (10px) and horizontal (16px) padding as needed */
+}
+.bubble .message-content-container::before, .bubble .message-content-container::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--line-height);
+    background: linear-gradient(to right, var(--color-line-subtle), transparent 85%);
+    pointer-events: none;
+    z-index: 2;
+}
+.bubble .message-content-container::before { top: 0; } /* Line sits at the very top edge */
+.bubble .message-content-container::after { bottom: 0; background: linear-gradient(to left, var(--color-line-subtle), transparent 85%); } /* Line sits at the very bottom edge */
+/* Remove old corner lines */
+.bubble .message-content-container > div:first-child::before { display: none; }
+
+/* --- Dropdown/Popover/Select Menu Fixes --- */
+/* Base styles inherited from consolidated container rule */
+.ant-dropdown-menu, .ant-dropdown .ant-dropdown-menu,
+.ant-select-dropdown .ant-select-dropdown-menu, .ant-popover-content,
+div[class^="PopoverContent-"] {
+  padding: calc(6px + var(--line-height)) 6px 6px 6px; /* Adjust padding for top line */
+}
+.ant-dropdown-menu-item, .ant-dropdown-menu > li, .ant-select-item,
+.ant-popover-inner-content > div, .ant-dropdown-menu-submenu-title {
+  border: none !important; border-bottom: none !important; position: relative;
+  margin-bottom: 2px !important; border-radius: 4px !important;
+  background-color: transparent !important;
+}
+.ant-dropdown-menu-item:hover, .ant-dropdown-menu > li:hover { background-color: rgba(var(--color-cyber-accent-rgb), 0.08) !important; }
+/* Force remove pseudo-elements/borders/arrows */
+.ant-dropdown::after, .ant-dropdown::before, .ant-dropdown-menu::after, /* Keep ::before for lines */
+.ant-dropdown-menu-item::after, .ant-dropdown-menu-item::before, .ant-dropdown-menu > li::after, .ant-dropdown-menu > li::before,
+.ant-select-dropdown::after, .ant-select-dropdown::before, .ant-select-dropdown-menu::after, /* Keep ::before for lines */
+.ant-popover::after, .ant-popover::before, .ant-popover-arrow, .ant-popover-content div::after, .ant-popover-content div::before, /* Keep ::before for lines */
+.ant-dropdown-placement-bottomLeft > .ant-dropdown-arrow, .ant-dropdown-placement-bottomCenter > .ant-dropdown-arrow,
+.ant-dropdown-placement-bottomRight > .ant-dropdown-arrow {
+  display: none !important; border: none !important; border-bottom: none !important; height: 0 !important;
+}
+.ant-dropdown *, .ant-select-dropdown *, .ant-popover-inner * { border-bottom: none !important; }
+/* Fix dropdown dividers */
+.ant-dropdown-menu-item-divider, .ant-dropdown-menu-submenu-title-divider,
+.ant-dropdown-menu-item-group-title::after, .ant-dropdown-menu > li.ant-dropdown-menu-item-divider {
+  display: none !important; height: 0 !important; margin: 0 !important; padding: 0 !important; border: none !important; background: transparent !important;
+}
+
+/* --- Modals (Keep Blur, Has Subtle Lines) --- */
+/* Search Modal Specifics */
+.ant-modal.ant-modal-root:has(input[type="search"]) .ant-modal-content,
+.ant-modal.ant-modal-root:has(input[placeholder*="搜索"]) .ant-modal-content,
+.ant-modal .ant-modal-content .ant-input-search,
+.ant-modal-search .ant-modal-content {
+  background: rgba(var(--color-background-rgb), 0.85) !important;
+  box-shadow: 0 0 15px rgba(var(--color-cyber-accent-rgb), 0.2) !important; /* Keep inner glow */
+}
+body[theme-mode="light"] .ant-modal.ant-modal-root:has(input[type="search"]) .ant-modal-content,
+body[theme-mode="light"] .ant-modal.ant-modal-root:has(input[placeholder*="搜索"]) .ant-modal-content,
+body[theme-mode="light"] .ant-modal .ant-modal-content .ant-input-search,
+body[theme-mode="light"] .ant-modal-search .ant-modal-content {
+  background: rgba(240, 248, 255, 0.92) !important;
+  box-shadow: 0 0 15px rgba(var(--color-cyber-accent-rgb), 0.15) !important; /* Keep inner glow */
+}
+/* Search Modal List Items */
+.ant-modal.ant-modal-root:has(input[type="search"]) li[class^="MenuItem-"],
+.ant-modal.ant-modal-root:has(input[placeholder*="搜索"]) li[class^="MenuItem-"],
+.ant-modal .ant-modal-content .ant-input-search ~ div li[class^="MenuItem-"],
+.ant-modal-search .ant-modal-content li[class^="MenuItem-"] {
+  background-color: transparent !important; border-bottom: 1px solid rgba(var(--color-cyber-accent-rgb), 0.1) !important;
+  margin-bottom: 4px; padding: 10px !important; transition: all 0.2s ease-in-out; border-radius: 4px !important;
+}
+.ant-modal.ant-modal-root:has(input[type="search"]) li[class^="MenuItem-"]:hover,
+.ant-modal.ant-modal-root:has(input[placeholder*="搜索"]) li[class^="MenuItem-"]:hover,
+.ant-modal .ant-modal-content .ant-input-search ~ div li[class^="MenuItem-"]:hover,
+.ant-modal-search .ant-modal-content li[class^="MenuItem-"]:hover {
+  background-color: rgba(var(--color-cyber-accent-rgb), 0.08) !important; transform: translateX(5px); border-left: 2px solid var(--color-cyber-accent) !important;
+}
+body[theme-mode="light"] .ant-modal.ant-modal-root:has(input[type="search"]) li[class^="MenuItem-"],
+body[theme-mode="light"] .ant-modal.ant-modal-root:has(input[placeholder*="搜索"]) li[class^="MenuItem-"],
+body[theme-mode="light"] .ant-modal .ant-modal-content .ant-input-search ~ div li[class^="MenuItem-"],
+body[theme-mode="light"] .ant-modal-search .ant-modal-content li[class^="MenuItem-"] {
+  color: rgba(30, 60, 90, 0.9) !important;
+}
+/* Modal Header (Keep solid bottom border) */
+.ant-modal-header {
+  background-color: transparent !important; border-bottom: 1px solid var(--color-cyber-accent);
+  border-radius: var(--list-item-border-radius) var(--list-item-border-radius) 0 0 !important;
+  padding: 16px 24px; color: var(--color-text-1) !important; position: relative;
+  z-index: 3; /* Above lines */
+}
+.ant-modal-title { color: var(--color-text-1) !important; }
+.ant-modal-header::after { content: ""; position: absolute; bottom: -1px; right: 0; width: 25%; height: 1px; background: linear-gradient(90deg, transparent, var(--color-cyber-accent)); }
+
+/* Agent/Card Info (Apply inset shadow only) */
+.ant-modal-confirm-content div[class^="AgentPrompt-"],
+div[class^="CardInfo-"] {
+  box-shadow: var(--chat-customize-box-shadow3) !important;
+  background: var(--chat-customize-collapse-background) !important;
+  color: var(--color-text-1);
+  border-radius: var(--list-item-border-radius) !important;
+  border: none !important;
+}
+
+/* --- Settings Group Container (FIXED: No overflow: hidden, Apply Subtle Lines) --- */
+div[class^="SettingGroup-"],
+div[class^="SettingContainer-"] div[class^="SettingGroup-"] {
+  border-radius: var(--list-item-border-radius) !important;
+  background: var(--color-background-opacity) !important;
+  box-shadow: none !important;
+  position: relative;
+  margin-bottom: 1rem;
+  padding: calc(16px + var(--line-height)) 16px 16px 16px; /* Adjust padding for top line */
+  border: none !important;
+}
+div[class^="SettingGroup-"]::before, div[class^="SettingGroup-"]::after,
+div[class^="SettingContainer-"] div[class^="SettingGroup-"]::before, div[class^="SettingContainer-"] div[class^="SettingGroup-"]::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--line-height);
+    background: linear-gradient(to right, var(--color-line-subtle), transparent 85%);
+    pointer-events: none;
+    z-index: 2;
+}
+div[class^="SettingGroup-"]::before, div[class^="SettingContainer-"] div[class^="SettingGroup-"]::before { top: 0; }
+div[class^="SettingGroup-"]::after, div[class^="SettingContainer-"] div[class^="SettingGroup-"]::after { bottom: 0; background: linear-gradient(to left, var(--color-line-subtle), transparent 85%); }
+
+div[class^="SettingGroup-"] > *,
+div[class^="SettingContainer-"] div[class^="SettingGroup-"] > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Segmented Control within Settings Group (Apply inset shadow) --- */
+div[class^="SettingGroup-"] .ant-segmented,
+.ant-segmented.ant-segmented-shape-round {
+    border-radius: var(--list-item-border-radius) !important;
+    background: var(--color-background-soft) !important;
+    box-shadow: var(--chat-customize-box-shadow3) !important;
+    position: relative;
+    overflow: hidden;
+    border: none !important;
+    /* No lines needed if inside SettingGroup which has lines */
+    z-index: auto;
+}
+div[class^="SettingGroup-"] label {
+    z-index: auto;
+}
+
+/* Menu Items / List Items / Segmented Labels */
+li[class^="MenuItem-"],
+#content-container [class^="ListItemContainer-"],
+.ant-segmented-group .ant-segmented-item-label {
+  border: 0 !important; transition: all 0.2s ease; box-sizing: border-box;
+  border-radius: var(--list-item-border-radius) !important; color: var(--color-text-2);
+  position: relative; background-color: transparent !important;
+  z-index: auto;
+}
+li[class^="MenuItem-"].active,
+#content-container [class^="ListItemContainer-"].active,
+.ant-segmented-group .ant-segmented-item-label[aria-selected="true"] {
+  box-shadow: var(--chat-customize-box-shadow4) !important;
+  background: var(--color-background-mute) !important;
+  color: var(--color-text-1);
+  border-left: 2px solid var(--color-cyber-accent) !important;
+}
+li[class^="MenuItem-"].active::after,
+#content-container [class^="ListItemContainer-"].active::after { content: ""; position: absolute; right: 5px; top: 5px; width: 5px; height: 5px; background-color: var(--color-cyber-accent); border-radius: 50%; }
+li[class^="MenuItem-"]:hover,
+#content-container [class^="ListItemContainer-"]:hover,
+.ant-segmented-group .ant-segmented-item-label:hover:not([aria-selected="true"]) {
+  box-shadow: var(--chat-customize-box-shadow4) !important;
+  background: var(--color-background-soft) !important;
+  color: var(--color-text-1);
+}
+
+/* Sidebar Icons */
+#app-sidebar [class^="Icon-"].active,
+#app-sidebar [class^="Icon-"]:hover {
+  box-shadow: var(--chat-customize-box-shadow3) !important;
+  background: transparent !important;
+  transition: all 0.2s ease; border: none !important; color: var(--color-cyber-accent-bright) !important;
+  position: relative; border-radius: 4px;
+}
+#app-sidebar { border: none !important; border-right: none !important; }
+
+/* Segmented Controls */
+.ant-segmented-thumb,
+label.ant-segmented-item.ant-segmented-item-selected { background-color: transparent !important; border: transparent !important; }
+.ant-segmented-thumb-motion-appear-active { display: none !important; }
+
+/* Collapse Panels (Apply Subtle Lines) */
+.ant-collapse-item {
+  border-radius: var(--list-item-border-radius) !important;
+  box-shadow: none !important;
+  overflow: visible; /* Allow lines */
+  background-color: transparent !important; margin-bottom: 1rem;
+  position: relative;
+  border: none !important;
+  padding: var(--line-height) 0; /* Add padding for lines */
+}
+.ant-collapse-item::before, .ant-collapse-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--line-height);
+    background: linear-gradient(to right, var(--color-line-subtle), transparent 85%);
+    pointer-events: none;
+    z-index: 2;
+}
+.ant-collapse-item::before { top: 0; }
+.ant-collapse-item::after { bottom: 0; background: linear-gradient(to left, var(--color-line-subtle), transparent 85%); }
+
+.ant-collapse-header {
+  background-color: var(--color-background-soft) !important; border-radius: 0 !important;
+  border-bottom: 1px solid rgba(var(--color-cyber-accent-rgb), 0.3);
+  color: var(--color-text-1); position: relative; padding: 12px 16px;
+  z-index: 1; /* Below lines */
+}
+.ant-collapse-header::after { content: ""; position: absolute; top: 50%; right: 40px; width: 30px; height: 1px; background: linear-gradient(90deg, transparent, var(--color-cyber-accent)); opacity: 0.6; }
+.ant-collapse-content { background-color: transparent !important; border-radius: 0 !important; position: relative; z-index: 0; }
+.ant-collapse-content-box { background-color: rgba(var(--color-background-rgb), 0.1) !important; border-radius: 0 !important; padding: 16px; color: var(--color-text-1); }
+.ant-collapse, .ant-collapse-borderless { border: none !important; background: transparent !important; }
+
+/* Input (inside Modal - Apply inset shadow) */
+.ant-modal-body .ant-input-affix-wrapper {
+  background-color: var(--color-background-mute) !important;
+  box-shadow: var(--chat-customize-box-shadow3) !important;
+  border-radius: var(--list-item-border-radius) !important;
+  position: relative; overflow: hidden; /* Keep hidden */
+  border: none !important; /* Remove border */
+  transition: box-shadow 0.3s var(--easing-standard);
+}
+.ant-modal-body .ant-input-affix-wrapper input { background: transparent !important; color: var(--color-text-1) !important; position: relative; z-index: 2; border: none !important; }
+.ant-modal-body .ant-input-affix-wrapper-focused {
+  background-color: var(--color-background-mute) !important;
+  box-shadow: var(--chat-customize-box-shadow4) !important; /* Use stronger inset shadow */
+}
+
+/* Search Icon */
+div[class^="SearchIcon-"] { background-color: transparent !important; color: var(--color-text-2); }
+
+
+/* === Markdown Content Styles === */
+.markdown { color: var(--color-text-1); }
+
+/* --- Markdown Headings --- */
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6,
+.bubble .message-content-container h1, .bubble .message-content-container h2,
+.bubble .message-content-container h3, .bubble .message-content-container h4,
+.bubble .message-content-container h5, .bubble .message-content-container h6 { font-family: inherit !important; font-weight: 700 !important; letter-spacing: 0.08em; margin-bottom: 1em !important; margin-top: 1.5em !important; position: relative; transition: color var(--duration-normal) var(--easing-standard); padding: 0.5em 0.8em !important; border-radius: var(--list-item-border-radius) !important; }
+.markdown h1, .bubble .message-content-container h1 { font-size: 1.8em; color: var(--color-cyber-accent-bright); border-bottom: 2px solid var(--color-cyber-accent); padding-bottom: 0.5em; overflow: hidden; background: linear-gradient(120deg, rgba(var(--color-cyber-accent-rgb), 0.08), rgba(var(--color-cyber-accent-rgb), 0.03)) !important; }
+.markdown h2, .bubble .message-content-container h2 { font-size: 1.5em; color: var(--color-cyber-accent); border-left: 4px solid var(--color-cyber-accent); border-top: 1px solid rgba(var(--color-cyber-accent-rgb), 0.6); padding-top: 0.4em; background: linear-gradient(120deg, rgba(var(--color-cyber-accent-purple-rgb), 0.06), rgba(var(--color-cyber-accent-purple-rgb), 0.02)) !important; }
+.markdown h3, .bubble .message-content-container h3 { font-size: 1.2em; color: var(--color-cyber-accent-purple); padding-left: 1.8em; background: linear-gradient(120deg, rgba(var(--color-cyber-accent-secondary-rgb), 0.06), rgba(var(--color-cyber-accent-secondary-rgb), 0.02)) !important; }
+.markdown h4, .bubble .message-content-container h4 { font-size: 1.1em; color:rgba(178, 111, 160, 0.91); font-weight: bold; padding-left: 1.5em; background: linear-gradient(120deg, rgba(var(--color-cyber-accent-rgb), 0.04), rgba(var(--color-cyber-accent-rgb), 0.01)) !important; }
+.markdown h5, .bubble .message-content-container h5 { font-size: 1em; color: var(--color-text-1); font-weight: bold; border-bottom: 1px dotted rgba(var(--color-cyber-accent-rgb), 0.35); padding-bottom: 0.3em; background: linear-gradient(120deg, rgba(var(--color-cyber-accent-purple-rgb), 0.03), rgba(var(--color-cyber-accent-purple-rgb), 0.01)) !important; }
+.markdown h6, .bubble .message-content-container h6 { font-size: 0.9em; color: var(--color-text-2); font-style: italic; font-weight: normal; text-transform: uppercase; letter-spacing: 0.05em; border-top: 1px dotted rgba(var(--color-cyber-accent-rgb), 0.35); padding-top: 0.3em; background: linear-gradient(120deg, rgba(var(--color-cyber-accent-secondary-rgb), 0.03), rgba(var(--color-cyber-accent-secondary-rgb), 0.01)) !important; }
+
+/* --- Markdown Blockquote (Subtle Lines + Solid Left) --- */
+.markdown blockquote {
+  padding: calc(1rem + var(--line-height)) 1.5rem 1rem 1.5rem; /* Adjust padding for top line */
+  margin: 1.3rem 0;
+  background-color: rgba(var(--color-cyber-accent-purple-rgb), 0.08);
+  font-style: italic; color: var(--color-text-2); position: relative;
+  border-left: 4px solid var(--color-cyber-accent-purple);
+  border-radius: var(--list-item-border-radius) !important;
+  overflow: visible; /* Allow lines */
+  border-top: none; border-right: none; border-bottom: none; /* Remove other borders */
+}
+.markdown blockquote::before, .markdown blockquote::after {
+    content: '';
+    position: absolute;
+    left: 0; /* Start from left edge */
+    width: 100%;
+    height: var(--line-height);
+    background: linear-gradient(to right, var(--color-line-subtle), transparent 85%);
+    pointer-events: none;
+    z-index: 2;
+}
+.markdown blockquote::before { top: 0; }
+.markdown blockquote::after { bottom: 0; background: linear-gradient(to left, var(--color-line-subtle), transparent 85%); }
+
+
+/* --- Markdown Emphasis --- */
+.markdown strong, .markdown b { font-weight: bold !important; color: var(--color-cyber-accent); margin: 0 0.1em; padding-bottom: 2px; line-height: 1.6 !important; font-family: "LXGW WenKai Screen", sans-serif !important; letter-spacing: 0.03em !important; background-color: transparent !important; border: none; background-image: linear-gradient(to right, rgba(var(--color-cyber-accent-rgb), 0.3) 0%, rgba(var(--color-cyber-accent-rgb), 0.8) 50%, rgba(var(--color-cyber-accent-rgb), 0.3) 100%); background-repeat: no-repeat; background-size: 100% 1.5px; background-position: left bottom; transition: none; }
+.markdown strong:hover, .markdown b:hover { color: var(--color-cyber-accent); background-image: linear-gradient(to right, rgba(var(--color-cyber-accent-rgb), 0.3) 0%, rgba(var(--color-cyber-accent-rgb), 0.8) 50%, rgba(var(--color-cyber-accent-rgb), 0.3) 100%); }
+.markdown em, .markdown i { font-style: italic; color: var(--color-cyber-accent-purple); margin: 0 0.1em; padding-bottom: 2px; line-height: 1.6 !important; font-family: "LXGW WenKai Screen", sans-serif !important; letter-spacing: 0.03em !important; background-color: transparent !important; border: none; background-image: linear-gradient(to right, transparent 15%, rgba(var(--color-cyber-accent-purple-rgb), 0.7) 50%, transparent 85%); background-repeat: no-repeat; background-size: 100% 1px; background-position: left bottom; transition: none; }
+.markdown em:hover, .markdown i:hover { color: var(--color-cyber-accent-purple); background-image: linear-gradient(to right, transparent 15%, rgba(var(--color-cyber-accent-purple-rgb), 0.7) 50%, transparent 85%); }
+
+/* --- Markdown Code Blocks (Apply Subtle Lines) --- */
+.markdown pre .shiki { border: none !important; background-color: transparent !important; padding: 0 !important; margin: 0 !important; }
+.markdown pre { padding: 0 !important; border-radius: var(--list-item-border-radius) !important; background: none !important; box-shadow: none !important; margin: 1.5rem 0; overflow: visible; /* Allow lines */ position: relative; }
+.markdown pre [class^="CodeBlockWrapper-"] {
+  border-radius: var(--list-item-border-radius) !important;
+  box-shadow: none !important;
+  overflow: hidden; /* Keep hidden for content clipping */
+  position: relative;
+  background-color: var(--color-background-opacity) !important;
+  border: none !important;
+  padding: var(--line-height) 0; /* Add padding for lines */
+}
+.markdown pre [class^="CodeBlockWrapper-"]::before, .markdown pre [class^="CodeBlockWrapper-"]::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--line-height);
+    background: linear-gradient(to right, var(--color-line-subtle), transparent 85%);
+    pointer-events: none;
+    z-index: 2;
+}
+.markdown pre [class^="CodeBlockWrapper-"]::before { top: 0; }
+.markdown pre [class^="CodeBlockWrapper-"]::after { bottom: 0; background: linear-gradient(to left, var(--color-line-subtle), transparent 85%); }
+
+.markdown pre [class^="CodeHeader-"] {
+  border-radius: 0 !important; background: linear-gradient(to bottom, rgba(var(--color-white-rgb), 0.06), rgba(var(--color-white-rgb), 0)), rgba(var(--color-black-rgb), 0.92);
+  border-bottom: 1px solid var(--color-cyber-accent);
+  margin-bottom: 0 !important; justify-content: center;
+  color: var(--color-text-2); padding: 8px 16px 8px 40px; position: relative; overflow: hidden;
+  z-index: 1; /* Below traffic lights, above content */
+}
+body[theme-mode="light"] .markdown pre [class^="CodeHeader-"] { background: linear-gradient(135deg, rgba(173, 216, 255, 0.7), rgba(198, 225, 246, 0.5)) !important; color: #3c526d !important; border-bottom-color: rgba(var(--color-cyber-accent-rgb), 0.3) !important; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important; }
+body[theme-mode="light"] .markdown pre [class^="CodeHeader-"] .anticon, body[theme-mode="light"] .markdown pre [class^="CodeHeader-"] .iconfont { color:rgb(59, 78, 105); }
+.markdown pre [class^="CodeHeader-"]::before { content: ''; position: absolute; top: 50%; transform: translateY(-50%); left: 12px; width: 12px; height: 12px; border-radius: 50%; background:rgb(250, 140, 136); box-shadow: 20px 0 rgb(255, 193, 7), 40px 0 rgb(113, 200, 126); z-index: 3; }
+body[theme-mode="light"] .markdown pre [class^="CodeContent-"], body[theme-mode="light"] .markdown pre code { color: #1a1a1a !important; }
+/* Light Mode Syntax Highlighting */
+body[theme-mode="light"] .markdown pre .token.comment, body[theme-mode="light"] .markdown pre .token.prolog, body[theme-mode="light"] .markdown pre .token.doctype, body[theme-mode="light"] .markdown pre .token.cdata { color: #4e545b !important; }
+body[theme-mode="light"] .markdown pre .token.punctuation { color: #24292e !important; }
+body[theme-mode="light"] .markdown pre .token.property, body[theme-mode="light"] .markdown pre .token.tag, body[theme-mode="light"] .markdown pre .token.boolean, body[theme-mode="light"] .markdown pre .token.number, body[theme-mode="light"] .markdown pre .token.constant, body[theme-mode="light"] .markdown pre .token.symbol, body[theme-mode="light"] .markdown pre .token.deleted, body[theme-mode="light"] .markdown pre .shiki .comment, body[theme-mode="light"] .markdown pre .shiki .punctuation.definition.comment, body[theme-mode="light"] .markdown pre .shiki .url, body[theme-mode="light"] .markdown pre .shiki .language-css .token.string, body[theme-mode="light"] .markdown pre .shiki .style .token.string { color: #005cc5 !important; background: transparent !important; }
+body[theme-mode="light"] .markdown pre .token.atrule, body[theme-mode="light"] .markdown pre .token.attr-value, body[theme-mode="light"] .markdown pre .token.keyword { color: #d73a49 !important; }
+body[theme-mode="light"] .markdown pre .token.function, body[theme-mode="light"] .markdown pre .token.class-name { color: #6f42c1 !important; }
+body[theme-mode="light"] .markdown pre .token.regex, body[theme-mode="light"] .markdown pre .token.important, body[theme-mode="light"] .markdown pre .token.variable { color: #e36209 !important; }
+body[theme-mode="light"] .markdown pre .token.important, body[theme-mode="light"] .markdown pre .token.bold { font-weight: bold !important; }
+body[theme-mode="light"] .markdown pre .token.italic { font-style: italic !important; }
+body[theme-mode="light"] .markdown pre .token.entity { cursor: help; }
+.markdown pre [class^="CodeContent-"] { background-color: transparent !important; border-radius: 0 !important; border-top: none !important; margin-top: 0 !important; padding: 12px; position: relative; z-index: 0; }
+
+/* --- Markdown Lists --- */
+.markdown ul, .markdown ol { padding-left: 2em; margin: 1em 0; }
+.markdown li { margin-bottom: 0.5em; position: relative; padding-left: 0.5em; }
+.markdown li::before { content: ''; position: absolute; left: -1.2em; top: 0.6em; height: 1px; width: 0.8em; background-color: rgba(var(--color-cyber-accent-rgb), 0.35); }
+.markdown ul li::marker { color: var(--color-cyber-accent); }
+.markdown ol li::marker { color: var(--color-cyber-accent-bright); }
+
+/* --- Markdown Horizontal Rule --- */
+.markdown hr { border: none; height: 2px; background: linear-gradient(90deg, transparent 0%, rgba(var(--color-cyber-accent-rgb), 0.35) 10%, var(--color-cyber-accent) 50%, rgba(var(--color-cyber-accent-rgb), 0.35) 90%, transparent 100%); margin: 2rem 0; opacity: 0.7; position: relative; }
+
+/* --- Markdown Tables (Apply Subtle Lines) --- */
+.markdown table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.5rem 0; background-color: var(--color-background-opacity) !important; border-radius: var(--list-item-border-radius); overflow: visible; /* Allow lines */
+  box-shadow: none !important;
+  position: relative;
+  border: none !important;
+  padding: var(--line-height) 0; /* Add padding for lines */
+}
+.markdown table::before, .markdown table::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--line-height);
+    background: linear-gradient(to right, var(--color-line-subtle), transparent 85%);
+    pointer-events: none;
+    z-index: 2;
+}
+.markdown table::before { top: 0; }
+.markdown table::after { bottom: 0; background: linear-gradient(to left, var(--color-line-subtle), transparent 85%); }
+
+/* Keep internal borders solid */
+.markdown th { background-color: rgba(var(--color-cyber-accent-rgb), 0.1) !important; color: var(--color-text-1); padding: 0.75rem; border-bottom: 1px solid var(--color-cyber-accent) !important; border-left: 1px solid rgba(var(--color-cyber-accent-rgb), 0.2); position: relative; text-align: left; font-family: inherit !important; font-weight: 700 !important; z-index: 1; }
+.markdown td { padding: 0.75rem; border-bottom: 1px solid rgba(var(--color-cyber-accent-rgb), 0.2) !important; border-left: 1px solid rgba(var(--color-cyber-accent-rgb), 0.2); transition: background-color var(--duration-quick) var(--easing-standard); color: var(--color-text-1); font-family: "LXGW WenKai Screen", sans-serif !important; z-index: 1; }
+.markdown th:first-child, .markdown td:first-child { border-left: none; padding-left: 0.75rem; }
+.markdown th:last-child, .markdown td:last-child { padding-right: 0.75rem; }
+.markdown tr:last-child td { border-bottom: none !important; padding-bottom: 0.75rem; }
+.markdown tr:hover td { background-color: transparent !important; }
+
+/* --- Markdown Inline Code (`code`) - Subtle Gradient Background (FIXED SELECTOR) --- */
+/* Select code that is NOT a descendant of pre */
+.markdown :not(pre) > code {
+  /* Text & Font Styles */
+  color: var(--color-text-1); /* Default color, overridden below */
+  font-family: "JetBrains Mono", "Fira Code", "Consolas", "Menlo", "Monaco", "Courier New", monospace !important;
+  font-size: 1em !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+  font-style: normal !important;
+  /* Layout & Structure */
+  border-radius: 3px;
+  padding: 0.1em 0.5em;
+  margin: 0 0.25em;
+  line-height: 1.4 !important;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  /* Background & Border */
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  background-color: transparent !important;
+  /* Default Gradient (Dark theme - using main accent color) */
+  background-image: linear-gradient(to right, rgba(var(--color-cyber-accent-rgb), 0.2), transparent 85%); /* Use Cyan/Teal */
+}
+
+/* Light mode adjustments for inline code */
+body[theme-mode="light"] .markdown :not(pre) > code {
+  color: var(--color-text-2);
+  background-image: linear-gradient(to right, rgba(var(--color-cyber-accent-rgb), 0.15), transparent 85%); /* Blue gradient for light */
+}
+
+/* Dark mode explicit override for inline code */
+body[theme-mode="dark"] .markdown :not(pre) > code {
+    color: var(--color-text-1);
+    background-image: linear-gradient(to right, rgba(var(--color-cyber-accent-rgb), 0.2), transparent 85%); /* Use Cyan/Teal */
+}
+
+/* Prevent bold/italic inside INLINE code - Selector updated */
+.markdown :not(pre) > code b,
+.markdown :not(pre) > code strong,
+.markdown :not(pre) > code i,
+.markdown :not(pre) > code em,
+.markdown b code:not(pre code), /* More specific if b/i is outside */
+.markdown strong code:not(pre code),
+.markdown i code:not(pre code),
+.markdown em code:not(pre code) {
+  font-weight: normal !important;
+  font-style: normal !important;
+  color: inherit !important;
+  background-image: none !important; /* Crucial: Prevents gradient removal */
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+/* Reset font size overrides (Keep this rule) */
+code, pre, .markdown code, .markdown pre code, .markdown pre * {
+  font-size: 1em !important;
+}
+
+/* --- Ensure Code Block Content has NO background --- */
+.markdown pre [class^="CodeContent-"] {
+    background-color: transparent !important; /* Double check this */
+    border-radius: 0 !important;
+    border-top: none !important;
+    margin-top: 0 !important;
+    padding: 12px;
+    position: relative;
+    z-index: 0;
+}
+/* Ensure code tags *inside* pre have no background */
+.markdown pre code {
+    background: none !important;
+    background-image: none !important;
+    color: inherit !important; /* Inherit color from syntax highlighting */
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    display: inline !important; /* Should behave like normal text inside pre */
+    vertical-align: baseline !important;
+}
+
+
+
+/* === Global Styles Continued === */
+
+/* Links (Optimized Animation) */
+a { color: var(--color-cyber-accent-purple) !important; transition: color var(--duration-normal) var(--easing-standard); text-decoration: none; position: relative; font-weight: bold; font-style: italic !important; }
+a:hover { color: var(--color-cyber-accent-bright) !important; }
+a::after { content: ""; position: absolute; width: 100%; height: 1.5px; bottom: -2px; left: 0; background-color: var(--color-cyber-accent-purple); transition: transform var(--duration-normal) var(--easing-standard); transform-origin: left; transform: scaleX(0); will-change: transform; }
+a:hover::after { transform: scaleX(1); background-color: var(--color-cyber-accent-bright); }
+
+/* Sidebar Icons (Home) */
+.home-sidebar .anticon, .home-sidebar .iconfont { color: var(--color-text-1) !important; font-size: 24px !important; }
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 8px; height: 14px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-cyber-accent); border-radius: 4px; border: 1px solid transparent !important; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-cyber-accent-bright); }
+pre::-webkit-scrollbar { width: 6px; height: 10px; }
+pre::-webkit-scrollbar-track { background: transparent; }
+pre::-webkit-scrollbar-thumb { background: var(--color-cyber-accent); border-radius: 3px; border: 1px solid transparent !important; }
+pre::-webkit-scrollbar-thumb:hover { background: var(--color-cyber-accent-bright); }
+
+/* Form Controls (Keep standard borders) */
+.ant-switch-checked { background-color: var(--color-cyber-accent) !important; }
+.ant-checkbox-checked .ant-checkbox-inner, .ant-checkbox-indeterminate .ant-checkbox-inner { background-color: var(--color-cyber-accent) !important; border-color: var(--color-cyber-accent) !important; }
+.ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner, .ant-checkbox-input:focus + .ant-checkbox-inner { border-color: var(--color-cyber-accent) !important; }
+.ant-checkbox-checked::after { border-color: var(--color-white) !important; }
+body[theme-mode="light"] .ant-checkbox-checked::after { border-color: var(--color-black) !important; }
+.ant-radio-checked .ant-radio-inner { border-color: var(--color-cyber-accent) !important; }
+.ant-radio-inner::after { background-color: var(--color-cyber-accent) !important; }
+.ant-radio-wrapper:hover .ant-radio-inner, .ant-radio:hover .ant-radio-inner, .ant-radio-input:focus + .ant-radio-inner { border-color: var(--color-cyber-accent) !important; }
+
+/* Antd Tables (Apply Subtle Lines) */
+.ant-table-wrapper {
+  border-radius: var(--list-item-border-radius); overflow: visible; /* Allow lines */
+  box-shadow: none !important;
+  background-color: var(--color-background-opacity) !important; position: relative;
+  border: none !important;
+  padding: var(--line-height) 0; /* Add padding for lines */
+}
+.ant-table-wrapper::before, .ant-table-wrapper::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--line-height);
+    background: linear-gradient(to right, var(--color-line-subtle), transparent 85%);
+    pointer-events: none;
+    z-index: 2;
+}
+.ant-table-wrapper::before { top: 0; }
+.ant-table-wrapper::after { bottom: 0; background: linear-gradient(to left, var(--color-line-subtle), transparent 85%); }
+
+.ant-table { background: transparent !important; border: none !important; }
+/* Keep internal borders solid */
+.ant-table-thead > tr > th { background-color: rgba(var(--color-cyber-accent-rgb), 0.1) !important; border-bottom: 1px solid var(--color-cyber-accent) !important; color: var(--color-text-1) !important; padding: 0.75rem; border-left: 1px solid rgba(var(--color-cyber-accent-rgb), 0.2); font-family: inherit !important; font-weight: 700 !important; position: relative; z-index: 1; }
+.ant-table-thead > tr > th:first-child { border-left: none; padding-left: 0.75rem; }
+.ant-table-thead > tr > th:last-child { padding-right: 0.75rem; }
+.ant-table-tbody > tr > td { border-bottom: 1px solid rgba(var(--color-cyber-accent-rgb), 0.2) !important; padding: 0.75rem; border-left: 1px solid rgba(var(--color-cyber-accent-rgb), 0.2); transition: background-color var(--duration-quick) var(--easing-standard); color: var(--color-text-1); font-family: "LXGW WenKai Screen", sans-serif !important; position: relative; z-index: 1; }
+.ant-table-tbody > tr > td:first-child { border-left: none; padding-left: 0.75rem; }
+.ant-table-tbody > tr > td:last-child { padding-right: 0.75rem; }
+.ant-table-tbody > tr:last-child > td { border-bottom: none !important; padding-bottom: 0.75rem; }
+.ant-table-tbody > tr.ant-table-row:hover > td { background: var(--color-background-mute) !important; }
+
+/* Selection Highlight */
+::selection { background-color: rgba(var(--color-cyber-accent-rgb), 0.35); color: var(--color-white); text-shadow: none; }
+body[theme-mode="light"] ::selection { color: var(--color-black); }
+
