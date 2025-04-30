@@ -1,4 +1,4 @@
-/* CherryYou主题 CSS */
+/* MaterialYou主题 CSS */
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap");
 @import url("http://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.min.css");
@@ -6,21 +6,14 @@
 
 :root {
   /* MaterialYou基础尺寸 */
-  --material-line-width: 0.3px;
-  --container-border-radius: 15px;
-  --list-item-border-radius: 8px;
-
+  --material-line-width: 0.3px;--container-border-radius: 15px;--list-item-border-radius: 8px;
   /* 过渡时间 */
   --duration-fast: 0.2s;--duration-normal: 0.3s;--easing-ease: ease;
-
   /* Material You/Nord 配色（深色模式默认） */
   --color-material-accent: #88C0D0;--color-material-accent-bright: #8FBCBB;--color-material-accent-purple: #B48EAD;
   --color-material-accent-rgb: 136,192,208;--color-material-accent-purple-rgb: 180,142,173;
-
   /* 线条 */
-  --color-material-line: rgba(var(--color-material-accent-rgb), .7);
-  --color-material-line-dim: rgba(var(--color-material-accent-rgb), .3);
-
+  --color-material-line: rgba(var(--color-material-accent-rgb), .7);--color-material-line-dim: rgba(var(--color-material-accent-rgb), .3);
   /* 背景颜色 (增加壁纸可见度) */
   --color-background: transparent;--color-background-soft: rgba(59,66,82,.7);--color-background-mute: rgba(67,76,94,.75);
   --navbar-background: transparent;--chat-background: transparent;
@@ -28,16 +21,13 @@
   --chat-customize-collapse-background: rgba(46,52,64,.6);
   --color-background-opacity: rgba(46,52,64,.7);--color-background-rgb: 46,52,64;
   --antd-arrow-background-color: rgba(67,76,94,.8);
-
   /* 文本颜色 */
   --chat-text-user: #E5E9F0;--color-text-1:rgb(197,232,246);--color-text-2:#D8DEE9;
   --chat-customize-codeHeader:#D8DEE9;--color-black:#2E3440;--color-white:#ECEFF4;
-
   /* 阴影颜色 */
   --chat-customize-box-shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.1);
   --chat-customize-box-shadow2:none;--chat-customize-box-shadow3:inset 0 1px 2px rgba(0,0,0,.1);
   --chat-customize-box-shadow4:inset 0 0 0 1px rgba(var(--color-material-accent-rgb),.3);
-
   /* 其他变量 */
   --color-black-rgb:46,52,64;--color-white-rgb:236,239,244;
 }
@@ -60,11 +50,8 @@ body[theme-mode="light"]{
   /* Material You/Nord 配色（浅色模式） */
   --color-material-accent:#81A1C1;--color-material-accent-bright:#5E81AC;--color-material-accent-purple:#B48EAD;
   --color-material-accent-rgb:129,161,193;--color-material-accent-purple-rgb:180,142,173;
-
   /* 线条 */
-  --color-material-line:rgba(var(--color-material-accent-rgb),.3);
-  --color-material-line-dim:rgba(var(--color-material-accent-rgb),.1);
-
+  --color-material-line:rgba(var(--color-material-accent-rgb),.3);--color-material-line-dim:rgba(var(--color-material-accent-rgb),.1);
   /* 背景颜色 (增加壁纸可见度) */
   --color-background:transparent;--color-background-soft:rgba(236,239,244,.6);--color-background-mute:rgba(229,233,240,.6);
   --navbar-background:transparent;--chat-background:transparent;
@@ -72,14 +59,11 @@ body[theme-mode="light"]{
   --chat-customize-collapse-background:rgba(236,239,244,.85);
   --color-background-opacity:rgba(245,248,251,.65);--color-background-rgb:245,248,251;
   --antd-arrow-background-color:rgba(229,233,240,.85);
-
   /* 文本颜色 */
   --chat-text-user:#4C566A;--color-text-1:#2E3440;--color-text-2:#4C566A;
   --chat-customize-codeHeader:#4C566A;--color-white:#FFFFFF;--color-black:#2E340;
-
   /* 其他变量 */
   --color-black-rgb:46,52,64;--color-white-rgb:255,255,255;
-
   background-image:url('https://w.wallhaven.cc/full/2k/wallhaven-2k33rx.jpg');
   background-size:cover;background-position:center center;background-repeat:no-repeat;background-attachment:fixed;
 
@@ -179,10 +163,13 @@ div[class^="SearchIcon-"]{background-color:transparent !important;color:var(--co
 /* Markdown 代码块内部 Shiki */
 .markdown pre .shiki{border:none !important;background-color:transparent !important;padding:0 !important;margin:0 !important;}
 /* Markdown 代码块 (pre) */
-.markdown pre{padding:0 !important;border-radius:var(--container-border-radius) !important;background:none !important;box-shadow:none !important;margin:1.5rem 0;overflow:hidden;position:relative;}
+.markdown pre{padding:0 !important;border-radius:var(--container-border-radius) !important;background:none !important;box-shadow:none !important;margin:1.5rem 0;/* overflow:hidden; <-- 移除这里的 overflow */position:relative;}
 
 /* --- 代码块 Wrapper 和 Table --- */
-.markdown pre [class^="CodeBlockWrapper-"],.markdown table{border-radius:var(--container-border-radius) !important;box-shadow:var(--chat-customize-box-shadow) !important;overflow:hidden;border:var(--material-line-width) solid var(--color-material-line-dim);position:relative;background-color:var(--color-background-opacity) !important;transition:background-color var(--duration-normal) var(--easing-ease),box-shadow var(--duration-normal) var(--easing-ease),border-color var(--duration-normal) var(--easing-ease);}
+.markdown pre [class^="CodeBlockWrapper-"],.markdown table{border-radius:var(--container-border-radius) !important;box-shadow:var(--chat-customize-box-shadow) !important;/* overflow:hidden; <-- 移除这里的 overflow */border:var(--material-line-width) solid var(--color-material-line-dim);position:relative;background-color:var(--color-background-opacity) !important;transition:background-color var(--duration-normal) var(--easing-ease),box-shadow var(--duration-normal) var(--easing-ease),border-color var(--duration-normal) var(--easing-ease);}
+/* 为代码块 Wrapper 单独设置溢出 */
+.markdown pre [class^="CodeBlockWrapper-"]{overflow-x:auto;overflow-y:hidden;} /* <-- 添加或修改这个规则 */
+/* Markdown Table 的 margin */
 .markdown table{margin:1.5rem 0;border-collapse:separate;border-spacing:0;width:100%;}
 
 /* --- Table Header --- */
