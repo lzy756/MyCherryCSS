@@ -1,9 +1,6 @@
 ✨ MyCherryCSS - CherryStudio 自定义主题 ✨
 
-👋 欢迎来到 MyCherryCSS！这个仓库是我的自定义 CSS 主题的集合，旨在个性化 CherryStudio 应用体验。
-
-[CherryStudio](https://github.com/CherryHQ/cherry-studio)
-https://github.com/CherryHQ/cherry-studio
+👋 欢迎来到 MyCherryCSS！这个仓库是我的自定义 CSS 主题的集合，旨在个性化 [CherryStudio](https://github.com/CherryHQ/cherry-studio) 应用体验。
 
 🎨 主题集
 
