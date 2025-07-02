@@ -2404,6 +2404,37 @@ body[theme-mode="light"] div[class*="ListItemContainer-"] svg {
   color: var(--color-text-2) !important;
 }
 
+div[class*="InputContainer-"] {
+  min-height: 150px !important;
+  max-height: 300px !important;
+}
+
+div[class*="InputContainer-"] .ant-input,
+div[class*="InputContainer-"] textarea {
+  min-height: 120px !important;
+  height: auto !important;
+  resize: vertical !important;
+  padding: 12px !important;
+  line-height: 1.5 !important;
+}
+
+.ant-input.ant-input-borderless.Textarea-fsgPXx {
+  min-height: 120px !important;
+  height: auto !important;
+  resize: vertical !important;
+  padding: 12px !important;
+  line-height: 1.5 !important;
+  font-size: 14px !important;
+}
+
+textarea.ant-input.ant-input-borderless {
+  min-height: 120px !important;
+  height: auto !important;
+  resize: vertical !important;
+  padding: 12px !important;
+  line-height: 1.5 !important;
+}
+
 div[class*="TopicNameContainer-"] {
   display: flex !important;
   align-items: center !important;
