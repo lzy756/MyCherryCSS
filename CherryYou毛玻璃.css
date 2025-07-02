@@ -1,0 +1,555 @@
+/*
+ * CherryYou 毛玻璃版
+ */
+
+/* --- 字体导入 --- */
+/* 引入多种字体以提供精细的排版，包括用于标题的装饰性字体和用于正文的代码字体 */
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap"); /* 装饰性标题字体 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap"); /* UI元素的字体 */
+@import url("https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.min.css"); /* 阅读区域字体 */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap'); /* 代码字体 */
+
+/* ======================================== */
+/* == 全局变量定义 == */
+/* ======================================== */
+:root {
+  /* -- 基础尺寸与圆角 -- */
+  --material-line-width: 0.3px; /* UI元素的精细线条 */
+  --container-border-radius: 15px; /* 容器的圆角，增加柔和感 */
+  --list-item-border-radius: 8px; /* 列表项的圆角 */
+
+  /* -- 过渡动画 -- */
+  --duration-fast: 0.2s; /* 快速过渡动画 */
+  --duration-normal: 0.3s; /* 普通过渡动画 */
+  --easing-ease: ease; /* 过渡动画的缓动函数 */
+
+  /* -- 颜色系统 (深色模式默认 - 灵感源自Nord Palette) -- */
+  /* 主色调，用于高亮和细节装饰 */
+  --color-material-accent: #88C0D0; /* 柔和的蓝色/青色 */
+  --color-material-accent-bright: #8FBCBB; /* 更亮的青色 */
+  --color-material-accent-purple: #B48EAD; /* 点缀用的紫色 */
+  --color-material-accent-rgb: 136,192,208; /* 蓝色/青色的RGB值，用于渐变和透明度 */
+  --color-material-accent-purple-rgb: 180,142,173; /* 紫色的RGB值 */
+
+  /* 线条颜色，采用主色调的半透明版本，实现精致感 */
+  --color-material-line: rgba(var(--color-material-accent-rgb), .7);
+  --color-material-line-dim: rgba(var(--color-material-accent-rgb), .3);
+
+  /* 背景设置，以实现“适度透明”和“清晰可见” */
+  --color-background: transparent; /* 主背景设置为透明 */
+  --color-background-soft: rgba(59,66,82,.7); /* 柔和的半透明背景色，用于某些UI元素 */
+  --color-background-mute: rgba(67,76,94,.75); /* 稍暗的半透明背景色 */
+  --navbar-background: transparent; /* 导航栏背景透明 */
+  --chat-background: transparent; /* 聊天区域主背景透明 */
+  --chat-background-user: rgba(46,52,64,.7); /* 用户消息气泡的半透明背景 */
+  --chat-background-assistant: rgba(46,52,64,.7); /* 助手消息气泡的半透明背景 */
+  --chat-customize-collapse-background: rgba(46,52,64,.6); /* 折叠区域的半透明背景 */
+  --color-background-opacity: rgba(46,52,64,.7); /* 通用半透明背景色 */
+  --antd-arrow-background-color: rgba(67,76,94,.8); /* Ant Design 组件的箭头背景色 */
+
+  /* 文本颜色，确保在各种背景下都清晰可读 */
+  --chat-text-user: #E5E9F0; /* 用户消息文本颜色 */
+  --color-text-1:#E5E9F0; /* 主要文本颜色 */
+  --color-text-2:#D8DEE9; /* 次要文本颜色 */
+  --chat-customize-codeHeader:#D8DEE9; /* 代码块标题文本颜色 */
+  --color-black:#2E3440; /* 深色背景下的纯黑 */
+  --color-white:#ECEFF4; /* 浅色背景下的纯白 */
+
+  /* 阴影效果，增加界面的层次感但保持简洁 */
+  --chat-customize-box-shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.1); /* 标准阴影 */
+  --chat-customize-box-shadow2:none; /* 无阴影 */
+  --chat-customize-box-shadow3:inset 0 1px 2px rgba(0,0,0,.1); /* 内部阴影 */
+  --chat-customize-box-shadow4:inset 0 0 0 1px rgba(var(--color-material-accent-rgb),.3); /* 内部边框阴影 */
+
+  /* RGB颜色值，用于渐变和滤镜 */
+  --color-black-rgb:46,52,64;
+  --color-white-rgb:236,239,244;
+
+  /* -- 增强型3D边缘效果变量 (深色模式) -- */
+  /* 用于创建微妙的立体感和精致的边角装饰 */
+  --cs-3d-edge-thickness: 1px; /* 边缘厚度 */
+  --cs-3d-edge-inner-offset: 0.8px; /* 内部边缘偏移 */
+  --cs-3d-edge-outer-offset: 0.5px; /* 外部边缘偏移 */
+  /* 内部边缘渐变，增加深度 */
+  --cs-3d-inner-line-gradient-dark: linear-gradient(135deg, rgba(var(--color-black-rgb), 0.35) 0%, rgba(var(--color-material-accent-rgb), 0.15) 50%, rgba(var(--color-black-rgb), 0.5) 100%);
+  /* 外部边缘渐变，增加高光和轮廓感 */
+  --cs-3d-outer-line-gradient-dark: linear-gradient(135deg, rgba(var(--color-white-rgb), 0.2) 0%, rgba(var(--color-material-accent-rgb), 0.3) 50%, rgba(var(--color-white-rgb), 0.05) 100%);
+}
+
+/* ======================================== */
+/* == 基础与字体设置 == */
+/* ======================================== */
+/* 全局字体设置，确保阅读舒适性 */
+body {
+  font-family:"Audiowide","Noto Sans SC","LXGW WenKai Screen",sans-serif !important; /* 综合运用多种字体以满足不同场景 */
+  letter-spacing:.03em; /* 微小的字间距，提升阅读舒适度 */
+  line-height:1.4; /* 增加行高，改善长文本阅读体验 */
+}
+
+/* UI 组件字体和权重 */
+.ant-modal-content,.ant-popover-inner,div[class^="InputContainer-"],div[class^="OutputContainer-"],div[class^="HistoryContainner-"],.ant-notification-notice,.ant-message-notice-content,.ant-drawer-content,.ant-modal .ant-modal-content,div[class^="AgentCardContainer-"],.ant-table-wrapper,.ant-collapse-item,#content-container [class^="ListItemContainer-"],div[class^="SettingGroup-"] label,.ant-tooltip-inner,.markdown th,.ant-table-thead>tr>th,.markdown pre [class^="CodeHeader-"]{
+  font-family:"Noto Sans SC",sans-serif !important; /* UI组件主要使用中文字体 */
+  font-weight:700 !important; /* 加粗以突出重要性 */
+  letter-spacing:inherit;
+  line-height:inherit;
+}
+/* Markdown 标题字体 */
+.markdown h1,.markdown h2,.markdown h3,.markdown h4,.markdown h5,.markdown h6{
+  font-family:"Audiowide",sans-serif !important; /* 使用装饰性字体，增加视觉吸引力 */
+  font-weight:700 !important;
+  letter-spacing:.08em; /* 标题字间距 */
+}
+/* 阅读区域字体优化 */
+.bubble .message-content-container,.inputbar-container textarea,.ant-modal .ant-modal-body,.ant-table-tbody>tr>td,.markdown blockquote,.markdown table,.markdown p,.markdown li,.markdown strong,.markdown b,.markdown em,.markdown i{
+  font-family:"LXGW WenKai Screen",sans-serif !important; /* 使用专为阅读设计的字体 */
+  letter-spacing:.03em !important; /* 增加字间距 */
+  line-height:1.4 !important; /* 增加行高 */
+}
+/* 代码字体 */
+code,pre,.markdown pre [class^="CodeContent-"] *{
+  font-family:'JetBrains Mono', monospace !important; /* 专为代码设计的等宽字体 */
+  font-weight:500 !important; /* 代码字体采用中等粗细 */
+  letter-spacing:normal !important;
+  line-height:1.45 !important; /* 代码行高 */
+  font-size:1.0em !important; /* 代码字体大小 */
+}
+
+/* ======================================== */
+/* == 主题模式与背景图片设置 == */
+/* ======================================== */
+/* 深色模式 */
+body[theme-mode="dark"]{
+  /* 背景图片设定，提供沉浸式体验 */
+  background-image:url('https://w.wallhaven.cc/full/j8/wallhaven-j831k5.png'); /* 精选壁纸 */
+  background-size:cover; /* 背景图片覆盖整个容器 */
+  background-position:center center; /* 背景图片居中 */
+  background-repeat:no-repeat; /* 背景图片不重复 */
+  background-attachment:fixed; /* 背景图片固定，随滚动固定 */
+}
+
+/* 浅色模式 */
+body[theme-mode="light"]{
+  /* -- 浅色模式下的颜色系统调整 -- */
+  --color-material-accent:#81A1C1; /* 柔和的蓝色/青色 */
+  --color-material-accent-bright:#5E81AC; /* 更亮的青色 */
+  --color-material-accent-purple:#B48EAD; /* 点缀用的紫色 */
+  --color-material-accent-rgb:129,161,193; /* 蓝色/青色的RGB值 */
+  --color-material-accent-purple-rgb:180,142,173; /* 紫色的RGB值 */
+  --color-material-line:rgba(var(--color-material-accent-rgb),.3); /* 浅色模式下的线条颜色 */
+  --color-material-line-dim:rgba(var(--color-material-accent-rgb),.1); /* 更淡的线条颜色 */
+  --color-background:transparent; /* 主背景透明 */
+  --color-background-soft:rgba(236,239,244,.6); /* 柔和的半透明背景色 */
+  --color-background-mute:rgba(229,233,240,.6); /* 稍暗的半透明背景色 */
+  --navbar-background:transparent; /* 导航栏透明 */
+  --chat-background:transparent; /* 聊天区域背景透明 */
+  --chat-background-user:rgba(245,248,251,.7); /* 用户消息气泡半透明背景 */
+  --chat-background-assistant:rgba(245,248,251,.7); /* 助手消息气泡半透明背景 */
+  --chat-customize-collapse-background:rgba(236,239,244,.85); /* 折叠区域半透明背景 */
+  --color-background-opacity:rgba(245,248,251,.65); /* 通用半透明背景色 */
+  --antd-arrow-background-color:rgba(229,233,240,.85); /* Ant Design 组件箭头背景 */
+  --chat-text-user:#4C566A; /* 用户消息文本颜色 */
+  --color-text-1:#2E3440; /* 主要文本颜色 */
+  --color-text-2:#4C566A; /* 次要文本颜色 */
+  --chat-customize-codeHeader:#4C566A; /* 代码块标题文本颜色 */
+  --color-white:#FFFFFF; /* 白色 */
+  --color-black:#2E3440; /* 深色背景下的纯黑 */
+  --color-black-rgb:46,52,64;
+  --color-white-rgb:255,255,255;
+  
+  /* 浅色模式下的背景图片 */
+  background-image:url('https://w.wallhaven.cc/full/2k/wallhaven-2k33rx.jpg'); /* 精选壁纸 */
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  
+  /* -- 增强型3D边缘效果变量 (浅色模式) -- */
+  /* 浅色模式下，渐变色调整以适应明亮背景 */
+  --cs-3d-inner-line-gradient-light: linear-gradient(135deg, rgba(var(--color-black-rgb), 0.12) 0%, rgba(var(--color-material-accent-rgb), 0.25) 50%, rgba(var(--color-black-rgb), 0.2) 100%);
+  --cs-3d-outer-line-gradient-light: linear-gradient(135deg, rgba(var(--color-white-rgb), 0.8) 0%, rgba(var(--color-material-accent-rgb), 0.4) 50%, rgba(var(--color-white-rgb), 0.3) 100%);
+}
+
+/* ======================================== */
+/* == 全局组件样式与细节调整 == */
+/* ======================================== */
+/* 通用容器样式：包括输入框、弹出框、抽屉等 */
+.inputbar-container,.ant-popover-inner,div[class^="InputContainer-"],div[class^="OutputContainer-"],div[class^="HistoryContainner-"],.ant-notification-notice,.ant-message-notice-content,.ant-drawer-content,.ant-modal .ant-modal-content,div[class^="AgentCardContainer-"],.ant-table-wrapper,.ant-collapse-item,#content-container [class^="ListItemContainer-"],div[class^="SettingGroup-"] label,.ant-tooltip-inner,.markdown th,.ant-table-thead>tr>th,.markdown pre [class^="CodeHeader-"]{
+  border-radius:var(--container-border-radius) !important; /* 应用圆角，增加柔和感 */
+  box-shadow:var(--chat-customize-box-shadow); /* 添加阴影，增加层次 */
+  background:var(--color-background-opacity) !important; /* 应用半透明背景 */
+  border:var(--material-line-width) solid var(--color-material-line-dim); /* 应用精细边框 */
+  overflow:hidden; /* 隐藏溢出内容 */
+  position:relative;
+  transition:background-color var(--duration-normal) var(--easing-ease),box-shadow var(--duration-normal) var(--easing-ease),border-color var(--duration-normal) var(--easing-ease),color var(--duration-normal) var(--easing-ease); /* 平滑的过渡动画 */
+}
+
+/* 输入框内的文本区域样式 */
+.inputbar-container textarea{
+  resize:none; /* 禁止调整大小 */
+  color:var(--color-text-1) !important; /* 设置文本颜色 */
+  background-color:transparent !important; /* 背景透明 */
+}
+.inputbar-container textarea:focus{
+  border:none !important; /* 聚焦时移除边框 */
+  box-shadow:none !important; /* 移除焦点阴影 */
+}
+/* 输入框内的按钮样式 */
+.inputbar-container .ant-btn{
+  color:var(--color-text-1) !important;
+  background-color:rgba(var(--color-black-rgb),.08) !important; /* 按钮背景色 */
+  border-color:var(--color-material-line-dim) !important; /* 按钮边框颜色 */
+  box-shadow:none !important;
+  position:relative;
+  overflow:hidden;
+  border-width:var(--material-line-width) !important; /* 精细边框宽度 */
+  border-radius:var(--list-item-border-radius) !important; /* 按钮圆角 */
+  transition:background-color var(--duration-fast) var(--easing-ease),border-color var(--duration-fast) var(--easing-ease),color var(--duration-fast) var(--easing-ease);
+}
+.inputbar-container .ant-btn .anticon,.inputbar-container .ant-btn .iconfont{
+  color:var(--color-text-1) !important;
+  transition:color var(--duration-fast) var(--easing-ease);
+}
+/* 按钮悬停效果 */
+.inputbar-container .ant-btn:hover{
+  background-color:rgba(var(--color-white-rgb),.12) !important; /* 悬停时背景变亮 */
+  border-color:var(--color-material-accent) !important; /* 边框颜色变化 */
+  color:var(--color-material-accent) !important; /* 文字颜色变化 */
+}
+.inputbar-container .ant-btn:hover .anticon,.inputbar-container .ant-btn:hover .iconfont{
+  color:var(--color-material-accent) !important;
+}
+/* 浅色模式下按钮悬停效果调整 */
+body[theme-mode="light"] .inputbar-container .ant-btn:hover{
+  background-color:rgba(var(--color-material-accent-rgb),.15) !important;
+  border-color:var(--color-material-line) !important;
+}
+
+/* 对话气泡样式，实现“毛玻璃”效果和精致细节 */
+.bubble .message-content-container{
+  border-radius:var(--container-border-radius) !important; /* 圆角 */
+  box-shadow:var(--chat-customize-box-shadow); /* 阴影 */
+  background-color:var(--chat-background-assistant) !important; /* 基础背景色 */
+  position:relative;
+  overflow:hidden;
+  transition:background-color var(--duration-normal) var(--easing-ease),box-shadow var(--duration-normal) var(--easing-ease);
+  /* 实现毛玻璃效果的核心：背景模糊 */
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+}
+/* 为气泡添加一层精细的边框伪元素 */
+.bubble .message-content-container::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border:var(--material-line-width) solid var(--color-material-line-dim); /* 精细边框 */
+  border-radius:var(--container-border-radius) !important;
+  pointer-events:none; /* 不影响点击事件 */
+}
+/* 添加一个微妙的装饰性光效 */
+.bubble .message-content-container::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  right:0;
+  width:20%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--color-material-accent)); /* 渐变光效 */
+  opacity:.8;
+  z-index:2;
+  transition:background var(--duration-normal) var(--easing-ease);
+}
+
+/* 模态框样式 */
+.ant-modal .ant-modal-content{
+  border:1px solid var(--color-material-accent); /* 边框使用主题强调色 */
+  color:var(--color-text-1); /* 文本颜色 */
+  border-radius:var(--container-border-radius) !important; /* 圆角 */
+}
+.ant-modal .ant-modal-content::before,.ant-modal .ant-modal-content::after{
+  display:none; /* 移除默认伪元素 */
+}
+/* 模态框头部 */
+.ant-modal-header{
+  background-color:transparent !important; /* 背景透明 */
+  border-bottom:1px solid var(--color-material-accent); /* 下边框 */
+  border-radius:var(--container-border-radius) var(--container-border-radius) 0 0 !important; /* 圆角 */
+  padding:16px 24px;
+  color:var(--color-text-1) !important;
+  position:relative;
+  transition:border-color var(--duration-normal) var(--easing-ease);
+}
+.ant-modal-title{
+  color:var(--color-text-1) !important; /* 标题颜色 */
+}
+/* 头部装饰性光效 */
+.ant-modal-header::after{
+  content:"";
+  position:absolute;
+  bottom:-1px;
+  right:0;
+  width:25%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--color-material-accent)); /* 渐变光效 */
+  opacity:.6;
+  z-index:1;
+  transition:background var(--duration-normal) var(--easing-ease);
+}
+
+/* 菜单项和列表项的样式 */
+li[class^="MenuItem-"],#content-container [class^="ListItemContainer-"],.ant-segmented-group .ant-segmented-item-label{
+  border:0 !important;
+  box-sizing:border-box;
+  border-radius:var(--list-item-border-radius) !important; /* 列表项圆角 */
+  color:var(--color-text-2);
+  position:relative;
+  background-color:transparent !important; /* 背景透明 */
+  transition:background-color var(--duration-fast) var(--easing-ease),color var(--duration-fast) var(--easing-ease),box-shadow var(--duration-fast) var(--easing-ease),border-left-color var(--duration-fast) var(--easing-ease);
+}
+/* 活动状态的列表项/菜单项 */
+li[class^="MenuItem-"].active,#content-container [class^="ListItemContainer-"].active,.ant-segmented-group .ant-segmented-item-label[aria-selected="true"]{
+  box-shadow:var(--chat-customize-box-shadow4) !important; /* 内部边框阴影 */
+  background:var(--color-background-soft) !important; /* 柔和背景 */
+  color:var(--color-text-1);
+  border-left:2px solid var(--color-material-accent) !important; /* 左侧强调色边框 */
+}
+/* 悬停状态 */
+li[class^="MenuItem-"]:hover,#content-container [class^="ListItemContainer-"]:hover,.ant-segmented-group .ant-segmented-item-label:not([aria-selected="true"]):hover{
+  background-color:rgba(var(--color-black-rgb),.1) !important; /* 悬停时背景变亮 */
+  color:var(--color-text-1); /* 文字变亮 */
+}
+
+/* ======================================== */
+/* == Markdown 内容区域样式 == */
+/* ======================================== */
+/* Markdown 内容的全局样式 */
+.markdown{
+  color:var(--color-text-1); /* 主要文本颜色 */
+}
+/* Markdown 标题样式 */
+.markdown h1{
+  font-size:2em;
+  border-bottom:2px solid var(--color-material-accent); /* 主题强调色下划线 */
+  padding-bottom:.3em;
+  margin-bottom:1em;
+  margin-top:1.5em;
+  position:relative;
+  color:var(--color-material-accent) !important;
+  transition:border-bottom-color var(--duration-normal) var(--easing-ease),color var(--duration-normal) var(--easing-ease);
+}
+.markdown h1::after{
+  content:"";
+  position:absolute;
+  right:0;
+  bottom:-2px;
+  width:30%;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--color-material-accent)); /* 右侧装饰性渐变 */
+  transition:background var(--duration-normal) var(--easing-ease);
+}
+.markdown h2{
+  font-size:1.5em;
+  border-left:4px solid var(--color-material-accent-bright); /* 左侧强调色边框 */
+  padding-left:1rem;
+  margin-bottom:1em;
+  margin-top:1.5em;
+  position:relative;
+  color:var(--color-material-accent-bright) !important;
+  transition:border-left-color var(--duration-normal) var(--easing-ease),color var(--duration-normal) var(--easing-ease);
+}
+.markdown h3{
+  font-size:1.2em;
+  margin-bottom:1em;
+  margin-top:1.5em;
+  color:var(--color-material-accent-purple) !important;
+  display:inline-block;
+  background-color:rgba(var(--color-material-accent-purple-rgb),.08); /* 紫色背景高亮 */
+  padding:.1em .4em;
+  border-radius:4px;
+  line-height:1.5;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone;
+  transition:background-color var(--duration-fast) var(--easing-ease),color var(--duration-fast) var(--easing-ease);
+}
+/* 引用块样式 */
+.markdown blockquote{
+  padding:1rem 1.5rem;
+  margin:1.5rem 0;
+  background-color:rgba(var(--color-material-accent-purple-rgb),.12); /* 紫色调背景 */
+  font-style:italic;
+  color:var(--color-text-2);
+  position:relative;
+  border:1px solid var(--color-material-accent-purple); /* 紫色边框 */
+  border-left:4px solid var(--color-material-accent-purple); /* 左侧加粗边框 */
+  border-radius:var(--container-border-radius) !important;
+  box-shadow:var(--chat-customize-box-shadow);
+  overflow:hidden;
+  transition:background-color var(--duration-normal) var(--easing-ease),border-color var(--duration-normal) var(--easing-ease),box-shadow var(--duration-normal) var(--easing-ease);
+}
+
+/* 代码块样式 */
+.markdown pre{
+  padding:0 !important;
+  border-radius:var(--container-border-radius) !important; /* 圆角 */
+  background:none !important;
+  box-shadow:none !important;
+  margin:1.5rem 0;
+  position:relative;
+}
+/* 代码块容器 */
+.markdown pre [class^="CodeBlockWrapper-"],.markdown table{
+  border-radius:var(--container-border-radius) !important;
+  box-shadow:var(--chat-customize-box-shadow) !important; /* 阴影 */
+  border:var(--material-line-width) solid var(--color-material-line-dim); /* 精细边框 */
+  position:relative;
+  background-color:var(--color-background-opacity) !important; /* 半透明背景 */
+  transition:background-color var(--duration-normal) var(--easing-ease),box-shadow var(--duration-normal) var(--easing-ease),border-color var(--duration-normal) var(--easing-ease);
+}
+.markdown pre [class^="CodeBlockWrapper-"]{
+  overflow-x:auto; /* 水平滚动条 */
+  overflow-y:hidden;
+}
+/* 代码块头部 */
+.markdown pre [class^="CodeHeader-"]{
+  border-radius:0 !important; /* 头部无圆角 */
+  background-color:rgba(var(--color-black-rgb),.9) !important; /* 深色背景 */
+  background-image:none !important;
+  border-bottom:none;
+  margin-bottom:0 !important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--color-text-2);
+  padding:8px 16px;
+  position:relative;
+  overflow:hidden;
+  padding-left:60px;
+  transition:background-color var(--duration-normal) var(--easing-ease),color var(--duration-normal) var(--easing-ease);
+}
+/* 隐藏复制按钮图标 */
+.markdown pre [class^="CodeHeader-"] .iconfont.icon-copy.copy {
+  display: none !important;
+}
+/* 添加代码块头部装饰性元素 (类似macOS的窗口控制按钮) */
+.markdown pre [class^="CodeHeader-"]::before{
+  content:' ';
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  left:16px;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:rgb(252,132,170); /* 粉色圆点 */
+  box-shadow:20px 0 rgb(147,243,230),40px 0 rgb(132,205,143); /* 绿色和青色圆点 */
+  z-index:1;
+}
+/* 添加代码块头部装饰性渐变线 */
+.markdown pre [class^="CodeHeader-"]::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:1px;
+  background:linear-gradient(90deg,var(--color-material-accent),transparent); /* 使用主题强调色渐变 */
+  opacity:.8;
+  z-index:1;
+  transition:background var(--duration-normal) var(--easing-ease);
+}
+/* 代码块内容区 */
+.markdown pre [class^="CodeContent-"]{
+  background-color:transparent !important;
+  border-radius:0 !important;
+  border-top:none !important;
+  margin-top:0 !important;
+  padding:16px;
+}
+/* Shiki 代码高亮插件的样式调整 */
+.markdown pre .shiki{
+  border:none !important;
+  background-color:transparent !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+
+/* 浅色模式下的代码块和表格样式覆盖 */
+body[theme-mode="light"] .markdown pre [class^="CodeBlockWrapper-"],
+body[theme-mode="light"] .markdown table{
+  border-color:var(--color-material-line) !important; /* 浅色模式下边框颜色调整 */
+}
+body[theme-mode="light"] .markdown pre [class^="CodeHeader-"]{
+  background-color:rgba(var(--color-white-rgb),.95) !important; /* 浅色模式头部背景 */
+  background-image:none !important;
+  color:var(--color-text-2);
+}
+body[theme-mode="light"] .markdown pre [class^="CodeHeader-"]::after{
+  background:linear-gradient(90deg,transparent,var(--color-material-line)); /* 浅色模式装饰线 */
+  opacity:.8;
+  z-index:1;
+}
+
+
+/* 选中文字时的样式 */
+::selection{
+  background-color:rgba(var(--color-material-accent-rgb),.2); /* 选中文本的背景色 */
+  color:var(--color-white); /* 选中文本的文字颜色 */
+  text-shadow:none;
+  transition:background-color var(--duration-fast) var(--easing-ease),color var(--duration-fast) var(--easing-ease);
+}
+/* 浅色模式下选中文本的颜色调整 */
+body[theme-mode="light"] ::selection{
+  color:var(--color-black);
+}
+
+
+/* ============================================= */
+/* == 增强型3D边缘效果 (可选高级装饰) == */
+/* ============================================= */
+/*
+  此部分为高级装饰，通过伪元素创建富有层次感的3D边缘，
+  为UI元素增添精致的细节。根据需要可在特定元素上添加 'cs-enhanced-edges' 类来启用。
+*/
+.cs-enhanced-edges {
+  position: relative;
+}
+
+.cs-enhanced-edges::before, /* 内部凹陷效果 */
+.cs-enhanced-edges::after {  /* 外部厚度/高光效果 */
+  content: '';
+  position: absolute;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: transparent;
+  border-image-slice: 1;
+  pointer-events: none;
+}
+
+.cs-enhanced-edges::before {
+  inset: 0;
+  border-radius: var(--container-border-radius);
+  padding: var(--cs-3d-edge-inner-offset, 0.8px);
+  border-width: var(--cs-3d-edge-thickness, 1px);
+  background-clip: padding-box;
+  border-image-source: var(--cs-3d-inner-line-gradient-dark); /* 深色模式内部边缘渐变 */
+  z-index: 0;
+}
+
+.cs-enhanced-edges::after {
+  /* 计算外部边缘的偏移量，使其围绕元素 */
+  top: calc(-1 * (var(--material-line-width, 0.3px) + var(--cs-3d-edge-outer-offset, 0.5px) + var(--cs-3d-edge-thickness, 1px)));
+  left: calc(-1 * (var(--material-line-width, 0.3px) + var(--cs-3d-edge-outer-offset, 0.5px) + var(--cs-3d-edge-thickness, 1px)));
+  right: calc(-1 * (var(--material-line-width, 0.3px) + var(--cs-3d-edge-outer-offset, 0.5px) + var(--cs-3d-edge-thickness, 1px)));
+  bottom: calc(-1 * (var(--material-line-width, 0.3px) + var(--cs-3d-edge-outer-offset, 0.5px) + var(--cs-3d-edge-thickness, 1px)));
+  border-radius: calc(var(--container-border-radius) + var(--material-line-width, 0.3px) + var(--cs-3d-edge-outer-offset, 0.5px) + var(--cs-3d-edge-thickness, 1px));
+  border-width: var(--cs-3d-edge-thickness, 1px);
+  border-image-source: var(--cs-3d-outer-line-gradient-dark); /* 深色模式外部边缘渐变 */
+  z-index: 0;
+}
+
+/* 浅色模式下应用不同的3D边缘渐变 */
+body[theme-mode="light"] .cs-enhanced-edges::before {
+  border-image-source: var(--cs-3d-inner-line-gradient-light); /* 浅色模式内部边缘渐变 */
+}
+
+body[theme-mode="light"] .cs-enhanced-edges::after {
+  border-image-source: var(--cs-3d-outer-line-gradient-light); /* 浅色模式外部边缘渐变 */
+}
