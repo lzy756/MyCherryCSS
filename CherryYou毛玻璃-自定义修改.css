@@ -1981,3 +1981,92 @@ body[theme-mode="light"] button.StyledButton-gAmhMO.epUKCv:hover {
   gap: var(--cherry-padding-sm) !important;
   align-items: center !important;
 }
+
+/* ===== 最终解决方案：Cherry Studio小窗口白色背景问题 ===== */
+/* 问题分析：小窗口有内联样式 style="background-color: var(--color-background);"
+   内联样式优先级最高，需要用最强力的方法覆盖 */
+
+/* 🎯 简化解决方案：直接显示背景图片，无额外毛玻璃 */
+.Container-fvHHho.dcyiVD::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+  background-image: var(--cherry-bg-image-dark) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  filter: blur(var(--bg-blur)) brightness(var(--bg-opacity)) !important;
+  border-radius: inherit !important;
+}
+
+/* 确保容器本身透明，只保留边框和圆角 */
+.Container-fvHHho.dcyiVD {
+  position: relative !important;
+  border: 1px solid var(--cherry-glass-border-light) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--cherry-shadow-subtle) !important;
+  overflow: hidden !important;
+}
+
+/* 浅色模式 */
+body[theme-mode="light"] .Container-fvHHho.dcyiVD::before {
+  background-image: var(--cherry-bg-image-light) !important;
+}
+
+/* 🔧 备用方案1：多重选择器强制覆盖 */
+html body[theme-mode="dark"] #root .Container-fvHHho.dcyiVD[style*="background-color"],
+html body[theme-mode="dark"] #root .Container-fvHHho.dcyiVD[style*="background"],
+html body #root .Container-fvHHho.dcyiVD[style*="background-color"],
+html body #root .Container-fvHHho.dcyiVD[style*="background"],
+body[theme-mode="dark"] #root .Container-fvHHho.dcyiVD,
+body #root .Container-fvHHho.dcyiVD {
+  background-color: transparent !important;
+  background-image: none !important;
+  background: none !important;
+}
+
+/* 🔧 备用方案2：CSS变量终极覆盖 */
+html[lang] body[theme-mode="dark"] {
+  --color-background: transparent !important;
+  --cherry-bg-transparent: transparent !important;
+}
+
+html[lang] body[theme-mode="light"] {
+  --color-background: transparent !important;
+  --cherry-bg-transparent: transparent !important;
+}
+
+html[lang] body {
+  --color-background: transparent !important;
+  --cherry-bg-transparent: transparent !important;
+}
+
+/* 🔧 备用方案3：ID选择器最高优先级 */
+#root .Container-fvHHho.dcyiVD[style] {
+  background-color: transparent !important;
+  background-image: none !important;
+  background: transparent !important;
+}
+
+/* 🔧 备用方案4：属性选择器精确匹配 */
+div.Container-fvHHho.dcyiVD[class*="dcyiVD"][style*="var(--color-background)"] {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* 确保内容层级正确 */
+.Container-fvHHho.dcyiVD > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* 确保窗口内容层级正确 */
+.Container-fvHHho > * {
+  position: relative;
+  z-index: 1;
+}
