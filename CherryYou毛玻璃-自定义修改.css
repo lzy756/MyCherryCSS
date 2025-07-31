@@ -1339,3 +1339,483 @@ body[theme-mode="light"] .markdown pre [class^="CodeContent-"],
 body[theme-mode="light"] .markdown pre .shiki {
   color: var(--color-text-1) !important;
 }
+
+/* ===== Ant Design 输入框毛玻璃效果 ===== */
+.ant-input:not(.ant-input-affix-wrapper .ant-input):not(.inputbar-container .ant-input),
+.ant-input-affix-wrapper:not(.inputbar-container .ant-input-affix-wrapper),
+.ant-input-password:not(.ant-input-affix-wrapper .ant-input-password):not(.inputbar-container .ant-input-password),
+.ant-input-outlined:not(.ant-input-affix-wrapper .ant-input-outlined):not(.inputbar-container .ant-input-outlined),
+.ant-cascader-picker:not(.inputbar-container .ant-cascader-picker),
+.ant-picker:not(.inputbar-container .ant-picker),
+input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input),
+input[type="password"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input),
+input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input),
+input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input),
+textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea) {
+  border-radius: var(--container-border-radius) !important;
+  box-shadow: var(--chat-customize-box-shadow) !important;
+  background: var(--cherry-glass-bg-dark) !important;
+  border: var(--cherry-line-width) solid var(--cherry-glass-border-light) !important;
+  backdrop-filter: var(--cherry-glass-blur) !important;
+  -webkit-backdrop-filter: var(--cherry-glass-blur) !important;
+  color: var(--cherry-text-white-semi) !important;
+  transition: all var(--cherry-duration-normal) var(--cherry-easing-smooth) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== 单独的 Ant Design Select 样式 ===== */
+.ant-select:not(.inputbar-container .ant-select) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ant-select-selector:not(.inputbar-container .ant-select-selector) {
+  border-radius: var(--container-border-radius) !important;
+  box-shadow: var(--chat-customize-box-shadow) !important;
+  background: var(--cherry-glass-bg-dark) !important;
+  border: var(--cherry-line-width) solid var(--cherry-glass-border-light) !important;
+  backdrop-filter: var(--cherry-glass-blur) !important;
+  -webkit-backdrop-filter: var(--cherry-glass-blur) !important;
+  color: var(--cherry-text-white-semi) !important;
+  transition: all var(--cherry-duration-normal) var(--cherry-easing-smooth) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.ant-input:not(.ant-input-affix-wrapper .ant-input):not(.inputbar-container .ant-input)::placeholder,
+.ant-input-password:not(.ant-input-affix-wrapper .ant-input-password):not(.inputbar-container .ant-input-password)::placeholder,
+input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::placeholder,
+input[type="password"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::placeholder,
+input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::placeholder,
+input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::placeholder,
+textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea)::placeholder {
+  color: var(--cherry-text-white-light) !important;
+}
+
+/* 输入框聚焦状态 - 淡粉色高亮 */
+.ant-input:not(.ant-input-affix-wrapper .ant-input):not(.inputbar-container .ant-input):focus,
+.ant-input-affix-wrapper:not(.inputbar-container .ant-input-affix-wrapper):focus,
+.ant-input-affix-wrapper:not(.inputbar-container .ant-input-affix-wrapper).ant-input-affix-wrapper-focused,
+.ant-input-password:not(.ant-input-affix-wrapper .ant-input-password):not(.inputbar-container .ant-input-password):focus,
+.ant-input-outlined:not(.ant-input-affix-wrapper .ant-input-outlined):not(.inputbar-container .ant-input-outlined):focus,
+.ant-cascader-picker:not(.inputbar-container .ant-cascader-picker):focus,
+.ant-picker:not(.inputbar-container .ant-picker):focus,
+input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):focus,
+input[type="password"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):focus,
+input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):focus,
+input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):focus,
+textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea):focus {
+  border-color: rgba(255, 192, 203, 0.8) !important;
+  box-shadow: var(--cherry-shadow-subtle),
+    0 0 12px rgba(255, 192, 203, 0.3),
+    inset 0 1px 2px rgba(255, 192, 203, 0.1) !important;
+  outline: none !important;
+  background: rgba(20, 20, 30, 0.4) !important;
+}
+
+/* Select 聚焦状态 */
+.ant-select-selector:not(.inputbar-container .ant-select-selector):focus,
+.ant-select.ant-select-focused .ant-select-selector:not(.inputbar-container .ant-select-selector) {
+  border-color: rgba(255, 192, 203, 0.8) !important;
+  box-shadow: var(--cherry-shadow-subtle),
+    0 0 12px rgba(255, 192, 203, 0.3),
+    inset 0 1px 2px rgba(255, 192, 203, 0.1) !important;
+  outline: none !important;
+  background: rgba(20, 20, 30, 0.4) !important;
+}
+
+/* 输入框悬停状态 */
+.ant-input:not(.ant-input-affix-wrapper .ant-input):not(.inputbar-container .ant-input):hover,
+.ant-input-affix-wrapper:not(.inputbar-container .ant-input-affix-wrapper):hover,
+.ant-input-password:not(.ant-input-affix-wrapper .ant-input-password):not(.inputbar-container .ant-input-password):hover,
+.ant-input-outlined:not(.ant-input-affix-wrapper .ant-input-outlined):not(.inputbar-container .ant-input-outlined):hover,
+.ant-cascader-picker:not(.inputbar-container .ant-cascader-picker):hover,
+.ant-picker:not(.inputbar-container .ant-picker):hover,
+input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):hover,
+input[type="password"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):hover,
+input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):hover,
+input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):hover,
+textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea):hover {
+  border-color: rgba(255, 192, 203, 0.5) !important;
+  background: rgba(20, 20, 30, 0.35) !important;
+}
+
+/* Select 悬停状态 */
+.ant-select-selector:not(.inputbar-container .ant-select-selector):hover,
+.ant-select:hover .ant-select-selector:not(.inputbar-container .ant-select-selector) {
+  border-color: rgba(255, 192, 203, 0.5) !important;
+  background: rgba(20, 20, 30, 0.35) !important;
+}
+
+/* 输入框选中文本样式 - 淡粉色选中背景 */
+.ant-input:not(.ant-input-affix-wrapper .ant-input):not(.inputbar-container .ant-input)::selection,
+.ant-input-password:not(.ant-input-affix-wrapper .ant-input-password):not(.inputbar-container .ant-input-password)::selection,
+input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::selection,
+input[type="password"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::selection,
+input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::selection,
+input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::selection,
+textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea)::selection {
+  background-color: var(--cherry-pink-selection) !important;
+  color: var(--cherry-text-white-semi) !important;
+}
+
+/* 输入框容器包装器样式 */
+.ant-input-affix-wrapper,
+.ant-input-affix-wrapper.ant-input-outlined {
+  background: var(--cherry-glass-bg-dark) !important;
+  border: var(--cherry-line-width) solid var(--cherry-glass-border-light) !important;
+  border-radius: var(--container-border-radius) !important;
+  backdrop-filter: var(--cherry-glass-blur) !important;
+  -webkit-backdrop-filter: var(--cherry-glass-blur) !important;
+}
+
+.ant-input-affix-wrapper .ant-input {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 输入框前缀和后缀图标样式 */
+.ant-input-suffix,
+.ant-input-prefix {
+  color: var(--cherry-text-white-light) !important;
+}
+
+.ant-input-suffix .anticon,
+.ant-input-prefix .anticon,
+.ant-input-suffix svg,
+.ant-input-prefix svg {
+  color: var(--cherry-text-white-light) !important;
+  transition: color var(--cherry-duration-fast) var(--cherry-easing-standard);
+}
+
+.ant-input-affix-wrapper:hover .ant-input-suffix .anticon,
+.ant-input-affix-wrapper:hover .ant-input-prefix .anticon,
+.ant-input-affix-wrapper:hover .ant-input-suffix svg,
+.ant-input-affix-wrapper:hover .ant-input-prefix svg {
+  color: rgba(255, 192, 203, 0.8) !important;
+}
+
+/* 浅色模式下的输入框样式 */
+body[theme-mode="light"] .ant-input:not(.ant-input-affix-wrapper .ant-input):not(.inputbar-container .ant-input),
+body[theme-mode="light"] .ant-input-affix-wrapper:not(.inputbar-container .ant-input-affix-wrapper),
+body[theme-mode="light"] .ant-input-password:not(.ant-input-affix-wrapper .ant-input-password):not(.inputbar-container .ant-input-password),
+body[theme-mode="light"] .ant-input-outlined:not(.ant-input-affix-wrapper .ant-input-outlined):not(.inputbar-container .ant-input-outlined),
+body[theme-mode="light"] .ant-cascader-picker:not(.inputbar-container .ant-cascader-picker),
+body[theme-mode="light"] .ant-picker:not(.inputbar-container .ant-picker),
+body[theme-mode="light"] input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input),
+body[theme-mode="light"] input[type="password"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input),
+body[theme-mode="light"] input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input),
+body[theme-mode="light"] input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input),
+body[theme-mode="light"] textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea) {
+  background: rgba(245, 248, 251, 0.7) !important;
+  border-color: rgba(129, 161, 193, 0.3) !important;
+  color: #4c566a !important;
+}
+
+/* 浅色模式下的 Select 样式 */
+body[theme-mode="light"] .ant-select:not(.inputbar-container .ant-select) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+body[theme-mode="light"] .ant-select-selector:not(.inputbar-container .ant-select-selector) {
+  background: rgba(245, 248, 251, 0.7) !important;
+  border-color: rgba(129, 161, 193, 0.3) !important;
+  color: #4c566a !important;
+}
+
+body[theme-mode="light"] .ant-input:not(.ant-input-affix-wrapper .ant-input):not(.inputbar-container .ant-input)::placeholder,
+body[theme-mode="light"] .ant-input-password:not(.ant-input-affix-wrapper .ant-input-password):not(.inputbar-container .ant-input-password)::placeholder,
+body[theme-mode="light"] input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::placeholder,
+body[theme-mode="light"] input[type="password"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::placeholder,
+body[theme-mode="light"] input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::placeholder,
+body[theme-mode="light"] input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::placeholder,
+body[theme-mode="light"] textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea)::placeholder {
+  color: #81a1c1 !important;
+}
+
+body[theme-mode="light"] .ant-input:not(.ant-input-affix-wrapper .ant-input):not(.inputbar-container .ant-input):focus,
+body[theme-mode="light"] .ant-input-affix-wrapper:not(.inputbar-container .ant-input-affix-wrapper):focus,
+body[theme-mode="light"] .ant-input-affix-wrapper:not(.inputbar-container .ant-input-affix-wrapper).ant-input-affix-wrapper-focused,
+body[theme-mode="light"] .ant-input-password:not(.ant-input-affix-wrapper .ant-input-password):not(.inputbar-container .ant-input-password):focus,
+body[theme-mode="light"] .ant-input-outlined:not(.ant-input-affix-wrapper .ant-input-outlined):not(.inputbar-container .ant-input-outlined):focus,
+body[theme-mode="light"] .ant-cascader-picker:not(.inputbar-container .ant-cascader-picker):focus,
+body[theme-mode="light"] .ant-picker:not(.inputbar-container .ant-picker):focus,
+body[theme-mode="light"] input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):focus,
+body[theme-mode="light"] input[type="password"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):focus,
+body[theme-mode="light"] input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):focus,
+body[theme-mode="light"] input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):focus,
+body[theme-mode="light"] textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea):focus {
+  border-color: rgba(255, 192, 203, 0.6) !important;
+  background: rgba(245, 248, 251, 0.8) !important;
+  box-shadow: var(--cherry-shadow-subtle),
+    0 0 8px rgba(255, 192, 203, 0.2),
+    inset 0 1px 2px rgba(255, 192, 203, 0.08) !important;
+}
+
+body[theme-mode="light"] .ant-select-selector:not(.inputbar-container .ant-select-selector):focus,
+body[theme-mode="light"] .ant-select.ant-select-focused .ant-select-selector:not(.inputbar-container .ant-select-selector) {
+  border-color: rgba(255, 192, 203, 0.6) !important;
+  background: rgba(245, 248, 251, 0.8) !important;
+  box-shadow: var(--cherry-shadow-subtle),
+    0 0 8px rgba(255, 192, 203, 0.2),
+    inset 0 1px 2px rgba(255, 192, 203, 0.08) !important;
+}
+
+body[theme-mode="light"] .ant-input:not(.ant-input-affix-wrapper .ant-input):not(.inputbar-container .ant-input):hover,
+body[theme-mode="light"] .ant-input-affix-wrapper:not(.inputbar-container .ant-input-affix-wrapper):hover,
+body[theme-mode="light"] .ant-input-password:not(.ant-input-affix-wrapper .ant-input-password):not(.inputbar-container .ant-input-password):hover,
+body[theme-mode="light"] .ant-input-outlined:not(.ant-input-affix-wrapper .ant-input-outlined):not(.inputbar-container .ant-input-outlined):hover,
+body[theme-mode="light"] .ant-cascader-picker:hover,
+body[theme-mode="light"] .ant-picker:hover,
+body[theme-mode="light"] input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):hover,
+body[theme-mode="light"] input[type="password"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):hover,
+body[theme-mode="light"] input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):hover,
+body[theme-mode="light"] input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):hover,
+body[theme-mode="light"] textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea):hover {
+  border-color: rgba(255, 192, 203, 0.4) !important;
+  background: rgba(245, 248, 251, 0.75) !important;
+}
+
+body[theme-mode="light"] .ant-select-selector:not(.inputbar-container .ant-select-selector):hover,
+body[theme-mode="light"] .ant-select:hover .ant-select-selector:not(.inputbar-container .ant-select-selector) {
+  border-color: rgba(255, 192, 203, 0.4) !important;
+  background: rgba(245, 248, 251, 0.75) !important;
+}
+
+body[theme-mode="light"] .ant-input:not(.ant-input-affix-wrapper .ant-input)::selection,
+body[theme-mode="light"] .ant-input-password:not(.ant-input-affix-wrapper .ant-input-password)::selection,
+body[theme-mode="light"] input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::selection,
+body[theme-mode="light"] input[type="password"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::selection,
+body[theme-mode="light"] input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::selection,
+body[theme-mode="light"] input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input)::selection,
+body[theme-mode="light"] textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea)::selection {
+  background-color: var(--cherry-pink-selection-light) !important;
+  color: #2e3440 !important;
+}
+
+body[theme-mode="light"] .ant-input-affix-wrapper,
+body[theme-mode="light"] .ant-input-affix-wrapper.ant-input-outlined {
+  background: rgba(245, 248, 251, 0.7) !important;
+  border-color: rgba(129, 161, 193, 0.3) !important;
+}
+
+/* 浅色模式下输入框内部元素透明背景 */
+body[theme-mode="light"] .ant-input-affix-wrapper .ant-input {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body[theme-mode="light"] .ant-input-suffix,
+body[theme-mode="light"] .ant-input-prefix {
+  color: #81a1c1 !important;
+}
+
+body[theme-mode="light"] .ant-input-suffix .anticon,
+body[theme-mode="light"] .ant-input-prefix .anticon,
+body[theme-mode="light"] .ant-input-suffix svg,
+body[theme-mode="light"] .ant-input-prefix svg {
+  color: #81a1c1 !important;
+}
+
+body[theme-mode="light"] .ant-input-affix-wrapper:hover .ant-input-suffix svg,
+body[theme-mode="light"] .ant-input-affix-wrapper:hover .ant-input-prefix svg {
+  color: rgba(255, 192, 203, 0.7) !important;
+}
+
+/* ===== 修复下拉菜单分层问题和z-index问题 ===== */
+/* 修复下拉菜单分层问题 - 确保下拉选择器正确显示 */
+.ant-select-dropdown {
+  z-index: 9999 !important;
+  backdrop-filter: var(--cherry-glass-blur);
+  background: var(--cherry-glass-bg-dark) !important;
+  border: 1px solid var(--cherry-pink-border) !important;
+  border-radius: var(--cherry-radius-item);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 var(--cherry-glass-border-light);
+}
+
+.ant-select-item {
+  background: transparent !important;
+  color: var(--cherry-text-white-semi) !important;
+  border-radius: var(--cherry-radius-item);
+  margin: 2px 4px;
+  transition: all var(--cherry-duration-fast) var(--cherry-easing-smooth);
+}
+
+.ant-select-item:hover,
+.ant-select-item-option-active {
+  background: var(--cherry-pink-selection) !important;
+  color: var(--cherry-text-white-semi) !important;
+}
+
+.ant-select-item-option-selected {
+  background: var(--cherry-pink-border-strong) !important;
+  color: #ffffff !important;
+  font-weight: 500;
+}
+
+/* 修复下拉选择器容器层级 */
+.ant-select-selector {
+  z-index: 1 !important;
+  position: relative !important;
+}
+
+/* 确保下拉箭头正确显示 */
+.ant-select-arrow {
+  z-index: 2 !important;
+  position: relative !important;
+}
+
+/* 浅色模式下的下拉菜单 */
+body[theme-mode="light"] .ant-select-dropdown {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid var(--cherry-pink-border) !important;
+  backdrop-filter: var(--cherry-glass-blur);
+}
+
+body[theme-mode="light"] .ant-select-item {
+  color: #2e3440 !important;
+}
+
+body[theme-mode="light"] .ant-select-item:hover,
+body[theme-mode="light"] .ant-select-item-option-active {
+  background: var(--cherry-pink-selection-light) !important;
+  color: #2e3440 !important;
+}
+
+body[theme-mode="light"] .ant-select-item-option-selected {
+  background: var(--cherry-pink-border-strong) !important;
+  color: #ffffff !important;
+}
+
+/* ===== 快捷助手按钮毛玻璃效果 ===== */
+/* 为快捷助手按钮添加毛玻璃和淡粉色高亮效果 */
+.StyledButton-gAmhMO,
+button.StyledButton-gAmhMO {
+  backdrop-filter: var(--cherry-glass-blur) !important;
+  background: var(--cherry-glass-bg-dark) !important;
+  border: 1px solid var(--cherry-pink-border) !important;
+  border-radius: var(--cherry-radius-item) !important;
+  color: var(--cherry-text-white-semi) !important;
+  font-family: var(--cherry-font-ui) !important;
+  font-weight: 500 !important;
+  letter-spacing: var(--cherry-letter-spacing-normal) !important;
+  padding: var(--cherry-padding-sm) var(--cherry-padding-xl) !important;
+  transition: all var(--cherry-duration-fast) var(--cherry-easing-smooth) !important;
+  box-shadow: var(--cherry-shadow-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.StyledButton-gAmhMO::before,
+button.StyledButton-gAmhMO::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--cherry-glass-border-light), transparent);
+  opacity: 0;
+  transition: opacity var(--cherry-duration-fast) var(--cherry-easing-smooth);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.StyledButton-gAmhMO span,
+button.StyledButton-gAmhMO span {
+  position: relative;
+  z-index: 1;
+}
+
+/* 悬停效果 */
+.StyledButton-gAmhMO:hover,
+button.StyledButton-gAmhMO:hover {
+  background: var(--cherry-pink-selection) !important;
+  border-color: var(--cherry-pink-border-strong) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 
+    0 4px 16px rgba(255, 192, 203, 0.25),
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 var(--cherry-glass-border-light);
+}
+
+.StyledButton-gAmhMO:hover::before,
+button.StyledButton-gAmhMO:hover::before {
+  opacity: 1;
+}
+
+/* 活跃状态 */
+.StyledButton-gAmhMO:active,
+button.StyledButton-gAmhMO:active {
+  transform: translateY(0);
+  background: var(--cherry-pink-border-strong) !important;
+}
+
+/* 主要按钮（默认模型）特殊样式 */
+.StyledButton-gAmhMO.epUKCv,
+button.StyledButton-gAmhMO.epUKCv {
+  background: var(--cherry-pink-border) !important;
+  border-color: var(--cherry-pink-border-strong) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+.StyledButton-gAmhMO.epUKCv:hover,
+button.StyledButton-gAmhMO.epUKCv:hover {
+  background: var(--cherry-pink-border-strong) !important;
+  box-shadow: 
+    0 6px 20px rgba(255, 192, 203, 0.35),
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 var(--cherry-glass-border-light);
+}
+
+/* 浅色模式下的按钮样式 */
+body[theme-mode="light"] .StyledButton-gAmhMO,
+body[theme-mode="light"] button.StyledButton-gAmhMO {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid var(--cherry-pink-border) !important;
+  color: #2e3440 !important;
+  backdrop-filter: var(--cherry-glass-blur);
+}
+
+body[theme-mode="light"] .StyledButton-gAmhMO:hover,
+body[theme-mode="light"] button.StyledButton-gAmhMO:hover {
+  background: var(--cherry-pink-selection-light) !important;
+  border-color: var(--cherry-pink-border-strong) !important;
+  color: #2e3440 !important;
+  box-shadow: 
+    0 4px 16px rgba(255, 192, 203, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+body[theme-mode="light"] .StyledButton-gAmhMO.epUKCv,
+body[theme-mode="light"] button.StyledButton-gAmhMO.epUKCv {
+  background: var(--cherry-pink-border) !important;
+  border-color: var(--cherry-pink-border-strong) !important;
+  color: #ffffff !important;
+}
+
+body[theme-mode="light"] .StyledButton-gAmhMO.epUKCv:hover,
+body[theme-mode="light"] button.StyledButton-gAmhMO.epUKCv:hover {
+  background: var(--cherry-pink-border-strong) !important;
+}
+
+/* 确保按钮容器正确排列 */
+.Box-hYgUQy.Stack-cgmguR.HStack-dsNZQB.ennsCW.ccCnwA.iUMlyp {
+  gap: var(--cherry-padding-sm) !important;
+  align-items: center !important;
+}
