@@ -6,7 +6,7 @@
 /* ===== 背景图片配置 - 用户可在此处修改图片URL ===== */
 :root {
   --bg-blur: 1px;         /* 背景模糊半径 */
-  --bg-opacity: 0.5;      /* 背景不透明度（0~1） */
+  --bg-opacity: 0.3;      /* 背景不透明度（0~1） */
   --bg-tint: rgba(0,0,0,.15); 
   /* 深色模式背景图片 */
   --cherry-bg-image-dark: url('https://blog.modeltktk3927.cyou:7000/images/79989442_p0.png');
