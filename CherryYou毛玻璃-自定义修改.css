@@ -1341,17 +1341,18 @@ body[theme-mode="light"] .markdown pre .shiki {
 }
 
 /* ===== Ant Design 输入框毛玻璃效果 ===== */
-.ant-input:not(.ant-input-affix-wrapper .ant-input):not(.inputbar-container .ant-input):not(.ant-select .ant-input):not(.ant-input-number-input):not(.ant-input-borderless),
-.ant-input-affix-wrapper:not(.inputbar-container .ant-input-affix-wrapper),
-.ant-input-password:not(.ant-input-affix-wrapper .ant-input-password):not(.inputbar-container .ant-input-password):not(.ant-select .ant-input-password),
-.ant-input-outlined:not(.ant-input-affix-wrapper .ant-input-outlined):not(.inputbar-container .ant-input-outlined):not(.ant-select .ant-input-outlined),
-.ant-cascader-picker:not(.inputbar-container .ant-cascader-picker),
-.ant-picker:not(.inputbar-container .ant-picker),
-input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input):not(.ant-input-number-input),
-input[type="password"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input),
-input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input),
-input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input):not(.ant-select-selection-search-input),
-textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea):not(.ant-select textarea):not(.ant-input-borderless) {
+/* 注意：排除翻译页面的输入框，避免双重毛玻璃效果 */
+.ant-input:not(.ant-input-affix-wrapper .ant-input):not(.inputbar-container .ant-input):not(.ant-select .ant-input):not(.ant-input-number-input):not(.ant-input-borderless):not(#translate-page .ant-input),
+.ant-input-affix-wrapper:not(.inputbar-container .ant-input-affix-wrapper):not(#translate-page .ant-input-affix-wrapper),
+.ant-input-password:not(.ant-input-affix-wrapper .ant-input-password):not(.inputbar-container .ant-input-password):not(.ant-select .ant-input-password):not(#translate-page .ant-input-password),
+.ant-input-outlined:not(.ant-input-affix-wrapper .ant-input-outlined):not(.inputbar-container .ant-input-outlined):not(.ant-select .ant-input-outlined):not(#translate-page .ant-input-outlined),
+.ant-cascader-picker:not(.inputbar-container .ant-cascader-picker):not(#translate-page .ant-cascader-picker),
+.ant-picker:not(.inputbar-container .ant-picker):not(#translate-page .ant-picker),
+input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input):not(.ant-input-number-input):not(#translate-page input),
+input[type="password"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input):not(#translate-page input),
+input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input):not(#translate-page input),
+input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input):not(.ant-select-selection-search-input):not(#translate-page input),
+textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea):not(.ant-select textarea):not(.ant-input-borderless):not(#translate-page textarea) {
   border-radius: var(--container-border-radius) !important;
   box-shadow: var(--chat-customize-box-shadow) !important;
   background: var(--cherry-glass-bg-dark) !important;
@@ -1393,6 +1394,27 @@ textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.a
 }
 
 .ant-select .ant-select-selection-search-input::placeholder {
+  color: var(--cherry-text-white-light) !important;
+}
+
+/* ===== 翻译页面输入框透明化 - 去除额外毛玻璃效果 ===== */
+#translate-page textarea,
+#translate-page input,
+#translate-page .ant-input,
+#translate-page .ant-input-affix-wrapper,
+#translate-page .ant-input-password,
+#translate-page .ant-input-outlined {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  color: var(--cherry-text-white-semi) !important;
+}
+
+#translate-page textarea::placeholder,
+#translate-page input::placeholder,
+#translate-page .ant-input::placeholder {
   color: var(--cherry-text-white-light) !important;
 }
 
@@ -1777,7 +1799,6 @@ body[theme-mode="light"] .ant-input-affix-wrapper:hover .ant-input-prefix svg {
   border-radius: var(--cherry-radius-item);
   margin: 2px 4px;
   transition: all var(--cherry-duration-fast) var(--cherry-easing-smooth);
-  padding: 8px 12px !important;
 }
 
 .ant-select-item:hover,
