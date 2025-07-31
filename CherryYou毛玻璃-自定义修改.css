@@ -6,12 +6,56 @@
 /* ===== 背景图片配置 - 用户可在此处修改图片URL ===== */
 :root {
   --bg-blur: 1px; /* 背景模糊半径 */
-  --bg-opacity: 0.3; /* 背景不透明度（0~1） */
+  --bg-opacity: 0.4; /* 背景不透明度（0~1） */
   --bg-tint: rgba(0, 0, 0, 0.15);
   /* 深色模式背景图片 */
   --cherry-bg-image-dark: url("https://blog.modeltktk3927.cyou:7000/images/79989442_p0.png");
   /* 浅色模式背景图片 */
   --cherry-bg-image-light: url("https://blog.modeltktk3927.cyou:7000/images/122101458_p0.jpg");
+  
+  /* ===== 玻璃拟态效果常量 ===== */
+  --cherry-glass-bg-dark: rgba(20, 20, 30, 0.3);
+  --cherry-glass-border-light: rgba(255, 255, 255, 0.1);
+  --cherry-glass-blur: blur(12px);
+  --cherry-code-header-bg: rgba(60, 30, 60, 0.6);
+  --cherry-code-header-bg-light: rgba(60, 30, 60, 0.45);
+  
+  /* ===== 粉色主题常量 ===== */
+  --cherry-pink-border: rgba(255, 192, 203, 0.3);
+  --cherry-pink-border-strong: rgba(255, 192, 203, 0.4);
+  --cherry-pink-selection: rgba(255, 192, 203, 0.3);
+  --cherry-pink-selection-light: rgba(255, 192, 203, 0.4);
+  
+  /* ===== 文本颜色常量 ===== */
+  --cherry-text-white-semi: #ffffffcc;
+  --cherry-text-white-light: #ffffff88;
+  
+  /* ===== 字体家族常量 ===== */
+  --cherry-font-main: "IBM Plex Sans", "Noto Sans SC", "LXGW WenKai Screen", sans-serif;
+  --cherry-font-ui: "IBM Plex Sans", "Noto Sans SC", sans-serif;
+  --cherry-font-code: "JetBrains Mono", monospace;
+  
+  /* ===== 文本样式常量 ===== */
+  --cherry-letter-spacing-normal: 0.03em;
+  --cherry-letter-spacing-title: 0.08em;
+  --cherry-line-height-normal: 1.4;
+  --cherry-line-height-code: 1.45;
+  --cherry-line-height-content: 1.6;
+  
+  /* ===== 间距常量 ===== */
+  --cherry-padding-xs: 4px;
+  --cherry-padding-sm: 8px;
+  --cherry-padding-md: 10px;
+  --cherry-padding-lg: 12px;
+  --cherry-padding-xl: 16px;
+  --cherry-padding-xxl: 20px;
+  --cherry-padding-xxxl: 24px;
+  
+  /* ===== 文本间距常量 ===== */
+  --cherry-margin-text: 0.8em;
+  --cherry-margin-title: 0.4em;
+  --cherry-padding-list: 1.5em;
+  --cherry-padding-quote: 1rem 1.5rem;
 }
 
 :root {
@@ -32,10 +76,10 @@
   --cherry-transform-hover-scale: none;
   --cherry-transform-active-press: none;
   --cherry-transform-focus-glow: none;
-  --cherry-color-primary: #88c0d0;
-  --cherry-color-primary-bright: #8fbcbb;
+  --cherry-color-primary: #ff80c0;
+  --cherry-color-primary-bright: #ffc0d8;
   --cherry-color-accent: #b48ead;
-  --cherry-color-primary-rgb: 136, 192, 208;
+  --cherry-color-primary-rgb: 255, 128, 192;
   --cherry-color-accent-rgb: 180, 142, 173;
   --cherry-color-dark-rgb: 46, 52, 64;
   --cherry-color-light-rgb: 236, 239, 244;
@@ -116,9 +160,9 @@
   --cs-3d-outer-line-gradient-dark: var(--cherry-3d-outer-gradient);
 }
 body {
-  font-family: "IBM Plex Sans", "Noto Sans SC", "LXGW WenKai Screen", sans-serif !important;
-  letter-spacing: 0.03em;
-  line-height: 1.4;
+  font-family: var(--cherry-font-main) !important;
+  letter-spacing: var(--cherry-letter-spacing-normal);
+  line-height: var(--cherry-line-height-normal);
 }
 .inputbar-container,
 .ant-popover-inner,
@@ -165,7 +209,7 @@ div[class^="SettingGroup-"] label,
 .markdown th,
 .ant-table-thead > tr > th,
 .markdown pre [class^="CodeHeader-"] {
-  font-family: "IBM Plex Sans", "Noto Sans SC", sans-serif !important;
+  font-family: var(--cherry-font-ui) !important;
   font-weight: 700 !important;
   letter-spacing: inherit;
   line-height: inherit;
@@ -176,9 +220,9 @@ div[class^="SettingGroup-"] label,
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  font-family: "IBM Plex Sans", "Noto Sans SC", sans-serif !important;
+  font-family: var(--cherry-font-ui) !important;
   font-weight: 700 !important;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--cherry-letter-spacing-title);
 }
 .bubble .message-content-container,
 .inputbar-container textarea,
@@ -192,19 +236,19 @@ div[class^="SettingGroup-"] label,
 .markdown b,
 .markdown em,
 .markdown i {
-  font-family: "IBM Plex Sans", "Noto Sans SC", "LXGW WenKai Screen", sans-serif !important;
-  letter-spacing: 0.03em !important;
-  line-height: 1.4 !important;
+  font-family: var(--cherry-font-main) !important;
+  letter-spacing: var(--cherry-letter-spacing-normal) !important;
+  line-height: var(--cherry-line-height-normal) !important;
 }
 code,
 pre,
 .markdown pre [class^="CodeContent-"] * {
-  font-family: "JetBrains Mono", monospace !important;
+  font-family: var(--cherry-font-code) !important;
   font-weight: 500 !important;
   letter-spacing: normal !important;
-  line-height: 1.45 !important;
+  line-height: var(--cherry-line-height-code) !important;
   font-size: 1em !important;
-  color: #ffffffcc !important;
+  /* 移除固定颜色以恢复语法高亮 */
 }
 body[theme-mode="light"] {
   --color-material-accent: #81a1c1;
@@ -299,8 +343,8 @@ body[theme-mode="light"] {
   background: var(--cherry-bg-surface) !important;
   border: var(--cherry-line-width) solid var(--cherry-border-subtle);
   overflow: hidden;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: var(--cherry-glass-blur);
+  backdrop-filter: var(--cherry-glass-blur);
   will-change: backdrop-filter;
   transform: translateZ(0);
   background-color: var(--chat-background-assistant) !important;
@@ -332,7 +376,7 @@ body[theme-mode="light"] {
   transform: translateZ(0);
 }
 .bubble .message-content-container .block-wrapper {
-  padding: 10px 16px !important;
+  padding: var(--cherry-padding-md) var(--cherry-padding-xl) !important;
   margin: 0 !important;
 }
 .bubble .message-content-container .markdown {
@@ -353,14 +397,14 @@ body[theme-mode="light"] {
 .bubble .message-content-container .ant-collapse,
 .bubble .message-content-container .message-thought-container,
 .bubble .message-content-container [class*="CollapseContainer-"] {
-  margin: 0.8em 0 !important;
+  margin: var(--cherry-margin-text) 0 !important;
 }
 .bubble .message-content-container .markdown p {
-  line-height: 1.6 !important;
+  line-height: var(--cherry-line-height-content) !important;
 }
 .bubble .message-content-container .markdown ul,
 .bubble .message-content-container .markdown ol {
-  padding-left: 1.5em !important;
+  padding-left: var(--cherry-padding-list) !important;
 }
 .bubble .message-content-container .markdown h1,
 .bubble .message-content-container .markdown h2,
@@ -368,7 +412,7 @@ body[theme-mode="light"] {
 .bubble .message-content-container .markdown h4,
 .bubble .message-content-container .markdown h5,
 .bubble .message-content-container .markdown h6 {
-  margin-bottom: 0.4em !important;
+  margin-bottom: var(--cherry-margin-title) !important;
 }
 .ant-collapse.message-thought-container,
 .ant-collapse[class*="CollapseContainer-"],
@@ -376,21 +420,21 @@ body[theme-mode="light"] {
 .bubble .message-content-container .ant-collapse,
 .bubble .message-content-container .message-thought-container,
 .bubble .message-content-container [class*="CollapseContainer-"] {
-  line-height: 1.6 !important;
+  line-height: var(--cherry-line-height-content) !important;
 }
 .ant-collapse-item,
 .ant-collapse-header,
 .ant-collapse-content,
 .ant-collapse-content-box {
   margin: 0 !important;
-  line-height: 1.6 !important;
+  line-height: var(--cherry-line-height-content) !important;
   box-shadow: none !important;
   background: transparent !important;
   border: none !important;
 }
 .ant-collapse-header,
 .ant-collapse-content-box {
-  padding: 4px 8px !important;
+  padding: var(--cherry-padding-xs) var(--cherry-padding-sm) !important;
 }
 .ant-collapse.ant-collapse-icon-position-end.ant-collapse-small[class*="CollapseContainer-"].message-thought-container,
 .ant-collapse.ant-collapse-icon-position-end.ant-collapse-small,
@@ -432,11 +476,11 @@ body[theme-mode="light"] {
 .inputbar-container {
   border-radius: var(--container-border-radius) !important;
   box-shadow: var(--chat-customize-box-shadow);
-  background: rgba(20, 20, 30, 0.3) !important;
-  border: var(--material-line-width) solid rgba(255, 255, 255, 0.1);
+  background: var(--cherry-glass-bg-dark) !important;
+  border: var(--material-line-width) solid var(--cherry-glass-border-light);
   overflow: hidden;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: var(--cherry-glass-blur) !important;
+  -webkit-backdrop-filter: var(--cherry-glass-blur) !important;
   transition: background-color var(--cherry-duration-normal)
       var(--cherry-easing-smooth),
     border-color var(--cherry-duration-normal) var(--cherry-easing-smooth),
@@ -451,34 +495,31 @@ body[theme-mode="light"] {
   );
 }
 .inputbar-container:hover {
-  border-color: var(--cherry-border-primary);
+  border-color: rgba(255, 128, 192, 0.5);
   box-shadow: var(--cherry-shadow-subtle),
-    0 0 0 1px rgba(var(--cherry-color-primary-rgb), 0.1);
+    0 0 0 1px rgba(255, 192, 203, 0.2);
 }
 .inputbar-container:focus-within {
-  border-color: var(--cherry-color-primary);
+  border-color: rgba(255, 128, 192, 0.8);
   box-shadow: var(--cherry-shadow-subtle),
-    0 0 0 2px rgba(var(--cherry-color-primary-rgb), 0.2),
-    0 0 12px rgba(var(--cherry-color-primary-rgb), 0.1);
+    0 0 0 2px var(--cherry-pink-border),
+    0 0 12px rgba(255, 128, 192, 0.2);
   transform: var(--cherry-transform-focus-glow);
-  border-color: var(--color-material-accent);
-  box-shadow: var(--chat-customize-box-shadow),
-    0 0 0 2px rgba(var(--color-material-accent-rgb), 0.2),
-    0 0 16px rgba(var(--color-material-accent-rgb), 0.15);
 }
 .inputbar-container textarea,
 .inputbar-container input {
   transition: all var(--cherry-duration-normal) var(--cherry-easing-smooth);
-  color: #ffffffcc !important;
+  color: var(--cherry-text-white-semi) !important;
   background-color: transparent !important;
 }
 .inputbar-container textarea::placeholder,
 .inputbar-container input::placeholder {
-  color: #ffffff88 !important;
+  color: var(--cherry-text-white-light) !important;
 }
 .inputbar-container textarea:focus,
 .inputbar-container input:focus {
   outline: none;
+  box-shadow: none !important;
 }
 .inputbar-container .ant-btn {
   color: var(--color-text-1) !important;
@@ -524,6 +565,10 @@ li[class^="MenuItem-"],
     color var(--duration-fast) var(--easing-ease),
     box-shadow var(--duration-fast) var(--easing-ease),
     border-left-color var(--duration-fast) var(--easing-ease);
+  display: flex !important;
+  align-items: center !important;
+  width: auto !important;
+  min-width: fit-content !important;
 }
 li[class^="MenuItem-"].active,
 #content-container [class^="ListItemContainer-"].active,
@@ -559,7 +604,7 @@ li[class^="MenuItem-"]:hover,
   transition: all var(--duration-normal) var(--easing-ease);
 }
 .ant-segmented-item-label {
-  padding: 8px 16px !important;
+  padding: var(--cherry-padding-sm) var(--cherry-padding-xl) !important;
   border-radius: var(--list-item-border-radius) !important;
   color: var(--color-text-2) !important;
   font-weight: 500 !important;
@@ -675,11 +720,11 @@ body[theme-mode="light"]
 .markdown table {
   border-radius: var(--container-border-radius) !important;
   box-shadow: var(--chat-customize-box-shadow) !important;
-  border: var(--material-line-width) solid rgba(255, 255, 255, 0.1);
+  border: var(--material-line-width) solid var(--cherry-glass-border-light);
   position: relative;
-  background-color: rgba(20, 20, 30, 0.3) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  background-color: var(--cherry-glass-bg-dark) !important;
+  backdrop-filter: var(--cherry-glass-blur) !important;
+  -webkit-backdrop-filter: var(--cherry-glass-blur) !important;
   transition: background-color var(--duration-normal) var(--easing-ease),
     box-shadow var(--duration-normal) var(--easing-ease),
     border-color var(--duration-normal) var(--easing-ease);
@@ -690,15 +735,15 @@ body[theme-mode="light"]
 }
 .markdown pre [class^="CodeHeader-"] {
   border-radius: 0 !important;
-  background-color: rgba(var(--color-black-rgb), 0.9) !important;
+  background-color: var(--cherry-code-header-bg) !important;
   background-image: none !important;
-  border-bottom: none;
+  border-bottom: 1px solid var(--cherry-pink-border);
   margin-bottom: 0 !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-2);
-  padding: 8px 16px 8px 60px;
+  color: inherit;
+  padding: var(--cherry-padding-sm) var(--cherry-padding-xl) var(--cherry-padding-sm) 60px;
   position: relative;
   overflow: hidden;
   transition: background-color var(--duration-normal) var(--easing-ease),
@@ -737,19 +782,17 @@ body[theme-mode="light"]
   border-radius: 0 !important;
   border-top: none !important;
   margin-top: 0 !important;
-  padding: 16px;
-  color: #ffffffcc !important;
+  padding: var(--cherry-padding-xl);
+  /* 移除固定颜色以恢复语法高亮 */
 }
 .markdown pre .shiki {
   border: none !important;
   background-color: transparent !important;
   padding: 0 !important;
   margin: 0 !important;
-  color: #ffffffcc !important;
+  /* 移除固定颜色以恢复语法高亮 */
 }
-/* 确保代码块中的所有语法高亮元素都使用正确的颜色 */
-.markdown pre .shiki span,
-.markdown pre [class^="CodeContent-"] span,
+/* 恢复代码块中的语法高亮，移除强制继承颜色的规则 */
 .markdown pre code,
 .markdown pre pre {
   color: inherit !important;
@@ -759,9 +802,10 @@ body[theme-mode="light"] .markdown table {
   border-color: var(--color-material-line) !important;
 }
 body[theme-mode="light"] .markdown pre [class^="CodeHeader-"] {
-  background-color: rgba(var(--color-white-rgb), 0.95) !important;
+  background-color: var(--cherry-code-header-bg-light) !important;
   background-image: none !important;
-  color: var(--color-text-2);
+  color: inherit;
+  border-bottom: 1px solid var(--cherry-pink-border-strong);
 }
 body[theme-mode="light"] .markdown pre [class^="CodeHeader-"]::after {
   background: linear-gradient(90deg, transparent, var(--color-material-line));
@@ -769,13 +813,14 @@ body[theme-mode="light"] .markdown pre [class^="CodeHeader-"]::after {
   z-index: 1;
 }
 ::selection {
-  background-color: rgba(var(--color-material-accent-rgb), 0.2);
+  background-color: var(--cherry-pink-selection);
   color: var(--color-white);
   text-shadow: none;
   transition: background-color var(--duration-fast) var(--easing-ease),
     color var(--duration-fast) var(--easing-ease);
 }
 body[theme-mode="light"] ::selection {
+  background-color: var(--cherry-pink-selection-light);
   color: var(--color-black);
 }
 .ant-modal .ant-modal-content {
@@ -792,7 +837,7 @@ body[theme-mode="light"] ::selection {
   border-bottom: 1px solid var(--color-material-accent);
   border-radius: var(--container-border-radius) var(--container-border-radius) 0
     0 !important;
-  padding: 16px 24px;
+  padding: var(--cherry-padding-xl) var(--cherry-padding-xxxl);
   color: var(--color-text-1) !important;
   position: relative;
   transition: border-color var(--duration-normal) var(--easing-ease);
@@ -817,11 +862,11 @@ body[theme-mode="light"] ::selection {
 }
 .markdown h1 {
   font-size: 2em;
-  border-bottom: 2px solid var(--color-material-accent);
+  border-bottom: 2px solid #e4b6d9;
   padding-bottom: 0.3em;
   margin: 1.5em 0 1em;
   position: relative;
-  color: var(--color-material-accent) !important;
+  color: #e4b6d9 !important;
   transition: border-bottom-color var(--duration-normal) var(--easing-ease),
     color var(--duration-normal) var(--easing-ease);
 }
@@ -832,25 +877,25 @@ body[theme-mode="light"] ::selection {
   bottom: -2px;
   width: 30%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-material-accent));
+  background: linear-gradient(90deg, transparent, #e4b6d9);
   transition: background var(--duration-normal) var(--easing-ease);
 }
 .markdown h2 {
   font-size: 1.5em;
-  border-left: 4px solid var(--color-material-accent-bright);
+  border-left: 4px solid #dab6ec;
   padding-left: 1rem;
   margin: 1.5em 0 1em;
   position: relative;
-  color: var(--color-material-accent-bright) !important;
+  color: #dab6ec !important;
   transition: border-left-color var(--duration-normal) var(--easing-ease),
     color var(--duration-normal) var(--easing-ease);
 }
 .markdown h3 {
   font-size: 1.2em;
   margin: 1.5em 0 1em;
-  color: var(--color-material-accent-purple) !important;
+  color: #c4a5e8 !important;
   display: inline-block;
-  background-color: rgba(var(--color-material-accent-purple-rgb), 0.08);
+  background-color: rgba(196, 165, 232, 0.08);
   padding: 0.1em 0.4em;
   border-radius: 4px;
   line-height: 1.5;
@@ -860,7 +905,7 @@ body[theme-mode="light"] ::selection {
     color var(--duration-fast) var(--easing-ease);
 }
 .markdown blockquote {
-  padding: 1rem 1.5rem;
+  padding: var(--cherry-padding-quote);
   margin: 1.5rem 0;
   background-color: rgba(var(--color-material-accent-purple-rgb), 0.12);
   font-style: italic;
@@ -986,31 +1031,24 @@ div[class*="ListItemContainer-"] {
   margin: 0 8px !important;
   opacity: 1 !important;
   visibility: visible !important;
-  min-width: 40px !important;
-  max-width: 120px !important;
   flex-shrink: 0 !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   background-image: none !important;
   border-image: none !important;
+  width: auto !important;
+  min-width: fit-content !important;
 }
 div[class*="ListItemContainer-"] div[class*="fnBPAQ"] {
-  min-width: 50px !important;
-  max-width: 130px !important;
   flex-shrink: 0 !important;
   width: auto !important;
   overflow: hidden !important;
 }
 div[class*="ListItemContainer-"] div {
-  min-width: 30px !important;
-  max-width: 140px !important;
   flex-shrink: 0 !important;
-  display: block !important;
-  overflow: hidden !important;
+  overflow: visible !important;
 }
 div[class*="ListItemContainer-"] .ant-flex > div {
   flex-shrink: 0 !important;
-  min-width: 40px !important;
-  max-width: 160px !important;
 }
 div[class*="ListItemContainer-"] svg {
   color: var(--color-text-2) !important;
@@ -1019,7 +1057,6 @@ div[class*="ListItemContainer-"] svg {
   height: 20px !important;
 }
 div[class*="ListItemContainer-"] div[style*="min-width: 40px"] {
-  min-width: 40px !important;
   text-align: center !important;
   flex-shrink: 0 !important;
 }
@@ -1041,6 +1078,29 @@ div[class*="TitleText-"],
 div[class*="Tag-"] {
   background-image: none !important;
   border-image: none !important;
+}
+
+/* 确保工具列表项图标和文字在同一行 */
+div[class*="ListItemContent-"] {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  flex-wrap: nowrap !important;
+}
+
+div[class*="TextContainer-"] {
+  flex: 1 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+div[class*="IconWrapper-"] {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 body[theme-mode="light"] div[class*="AgentsGroupList-"] {
   border-right: 0.5px solid var(--color-border) !important;
@@ -1105,23 +1165,23 @@ body[theme-mode="light"] div[class*="ListItemContainer-"].active {
 @supports (container-type: inline-size) {
   @container (min-width: 400px) {
     .bubble .message-content-container {
-      padding: 16px 20px;
+      padding: var(--cherry-padding-xl) var(--cherry-padding-xxl);
     }
   }
   @container (min-width: 600px) {
     .bubble .message-content-container {
-      padding: 20px 24px;
+      padding: var(--cherry-padding-xxl) var(--cherry-padding-xxxl);
       border-radius: calc(var(--container-border-radius) + 2px) !important;
     }
   }
   @container (min-width: 500px) {
     .inputbar-container {
-      padding: 12px 16px;
+      padding: var(--cherry-padding-lg) var(--cherry-padding-xl);
     }
   }
   @container (min-width: 800px) {
     .inputbar-container {
-      padding: 16px 20px;
+      padding: var(--cherry-padding-xl) var(--cherry-padding-xxl);
     }
   }
 }
@@ -1131,11 +1191,11 @@ body[theme-mode="light"] div[class*="ListItemContainer-"].active {
 .SearchBarContainer-bqkSan,
 div[class*="SearchBarContainer-"] {
   /* 使用新的配色方案：玻璃拟态效果 */
-  background-color: rgba(20, 20, 30, 0.3) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: #ffffffcc !important;
+  background-color: var(--cherry-glass-bg-dark) !important;
+  backdrop-filter: var(--cherry-glass-blur) !important;
+  -webkit-backdrop-filter: var(--cherry-glass-blur) !important;
+  border: 1px solid var(--cherry-glass-border-light) !important;
+  color: var(--cherry-text-white-semi) !important;
 }
 
 /* 搜索框输入文字可见性优化 */
@@ -1144,13 +1204,13 @@ div[class*="SearchBarContainer-"] {
 div[class*="SearchBarContainer-"] input,
 .Input-ftTsCq.jyOQVw {
   background-color: transparent !important;
-  color: #ffffffcc !important;
+  color: var(--cherry-text-white-semi) !important;
 }
 
 .SearchBarContainer-bqkSan.fphXkb input::placeholder,
 .SearchBarContainer-bqkSan input::placeholder,
 div[class*="SearchBarContainer-"] input::placeholder {
-  color: #ffffff88 !important;
+  color: var(--cherry-text-white-light) !important;
 }
 
 /* 浅色模式下的搜索框可见性优化 */
@@ -1211,11 +1271,11 @@ body[theme-mode="light"]::before {
 /* 为特定的输入和代码容器添加新的配色方案 */
 div[class^="InputContainer-"],
 div[class^="OutputContainer-"] {
-  background: rgba(20, 20, 30, 0.3) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffffcc !important;
+  background: var(--cherry-glass-bg-dark) !important;
+  backdrop-filter: var(--cherry-glass-blur) !important;
+  -webkit-backdrop-filter: var(--cherry-glass-blur) !important;
+  border-color: var(--cherry-glass-border-light) !important;
+  color: var(--cherry-text-white-semi) !important;
 }
 
 /* 确保输入和输出容器内的文本使用正确的颜色 */
@@ -1223,7 +1283,7 @@ div[class^="InputContainer-"] input,
 div[class^="InputContainer-"] textarea,
 div[class^="OutputContainer-"] input,
 div[class^="OutputContainer-"] textarea {
-  color: #ffffffcc !important;
+  color: var(--cherry-text-white-semi) !important;
   background-color: transparent !important;
 }
 
@@ -1231,7 +1291,7 @@ div[class^="InputContainer-"] input::placeholder,
 div[class^="InputContainer-"] textarea::placeholder,
 div[class^="OutputContainer-"] input::placeholder,
 div[class^="OutputContainer-"] textarea::placeholder {
-  color: #ffffff88 !important;
+  color: var(--cherry-text-white-light) !important;
 }
 
 /* 浅色模式下搜索框保持原有样式 */
