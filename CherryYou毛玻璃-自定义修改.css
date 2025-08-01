@@ -26,6 +26,10 @@
   --cherry-pink-selection: rgba(255, 192, 203, 0.3);
   --cherry-pink-selection-light: rgba(255, 192, 203, 0.4);
   
+  /* ===== 温和选择效果常量 ===== */
+  --cherry-pink-selection-soft: rgba(255, 192, 203, 0.2);
+  --cherry-pink-selection-soft-light: rgba(255, 192, 203, 0.25);
+  
   /* ===== 文本颜色常量 ===== */
   --cherry-text-white-semi: #ffffffcc;
   --cherry-text-white-light: #ffffff88;
@@ -812,15 +816,16 @@ body[theme-mode="light"] .markdown pre [class^="CodeHeader-"]::after {
   opacity: 0.8;
   z-index: 1;
 }
+/* 全局文本选择样式 - 温和的淡粉色背景 */
 ::selection {
-  background-color: var(--cherry-pink-selection);
+  background-color: var(--cherry-pink-selection-soft);
   color: var(--color-white);
   text-shadow: none;
   transition: background-color var(--duration-fast) var(--easing-ease),
     color var(--duration-fast) var(--easing-ease);
 }
 body[theme-mode="light"] ::selection {
-  background-color: var(--cherry-pink-selection-light);
+  background-color: var(--cherry-pink-selection-soft-light);
   color: var(--color-black);
 }
 .ant-modal .ant-modal-content {
@@ -1579,7 +1584,7 @@ textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.a
   background: rgba(20, 20, 30, 0.35) !important;
 }
 
-/* 输入框选中文本样式 - 淡粉色选中背景 */
+/* 输入框选中文本样式 - 温和的淡粉色选中背景，与聚焦效果保持一致 */
 .ant-input:not(.ant-input-affix-wrapper .ant-input):not(.inputbar-container .ant-input):not(.ant-select .ant-input):not(.ant-input-number-input):not(.ant-input-borderless)::selection,
 .ant-input-password:not(.ant-input-affix-wrapper .ant-input-password):not(.inputbar-container .ant-input-password):not(.ant-select .ant-input-password)::selection,
 input[type="text"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input):not(.ant-input-number-input)::selection,
@@ -1587,7 +1592,7 @@ input[type="password"]:not(.inputbar-container input):not(.inputbar-container te
 input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input)::selection,
 input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input):not(.ant-select-selection-search-input)::selection,
 textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea):not(.ant-select textarea):not(.ant-input-borderless)::selection {
-  background-color: var(--cherry-pink-selection) !important;
+  background-color: var(--cherry-pink-selection-soft) !important;
   color: var(--cherry-text-white-semi) !important;
 }
 
@@ -1726,7 +1731,7 @@ body[theme-mode="light"] input[type="password"]:not(.inputbar-container input):n
 body[theme-mode="light"] input[type="email"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input)::selection,
 body[theme-mode="light"] input[type="search"]:not(.inputbar-container input):not(.inputbar-container textarea):not(.ant-input-affix-wrapper input):not(.ant-select input):not(.ant-select-selection-search-input)::selection,
 body[theme-mode="light"] textarea:not(.inputbar-container textarea):not(.inputbar-container input):not(.ant-input-affix-wrapper textarea):not(.ant-select textarea):not(.ant-input-borderless)::selection {
-  background-color: var(--cherry-pink-selection-light) !important;
+  background-color: var(--cherry-pink-selection-soft-light) !important;
   color: #2e3440 !important;
 }
 
